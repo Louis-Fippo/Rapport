@@ -1,0 +1,332 @@
+\documentclass[fleqn,9pt,t]{beamer}
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+%\usepackage{french} % Sommaire en début de document
+%\usepackage[top=2cm, bottom=2cm, left=2cm, right=2cm]{geometry} % Marges
+
+\usepackage{amsmath} % Maths
+\usepackage{amsfonts} % Maths
+\usepackage{amssymb} % Maths
+\usepackage{stmaryrd} % Maths (crochets doubles)
+
+%\usepackage{listings} % Mise en forme du code (pour Hoare) ## À REVOIR ###
+%\usepackage{ifthen} % Structures If Then Else
+\usepackage{theorem} % Styles supplémentaires pour théorèmes
+\usepackage{url}
+\usepackage{array}  % Tableaux évolués
+\usepackage{multirow}  % Pour des colonnes sur plusieurs lignes
+
+%\usepackage{enumerate} % Changer les puces des listes d'énumération
+%\usepackage{setspace} % Changer les interlignes
+
+%\usepackage{subfig} % Créer des sous-figures
+%\usepackage{graphicx} % Importer des images
+
+\usepackage{ulem}  % Pour l'attribut barré
+
+\usepackage{comment}
+
+% Police
+\usepackage{lmodern}
+%\usepackage{libertine}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tikz}
+\newdimen\pgfex
+\newdimen\pgfem
+\usetikzlibrary{arrows,shapes,shadows,scopes}
+\usetikzlibrary{positioning}
+\usetikzlibrary{matrix}
+\usetikzlibrary{decorations.text}
+\usetikzlibrary{decorations.pathmorphing}
+
+\input{macros/macros}
+\input{macros/macros-ph}
+\input{macros/macros-abstr}
+
+\def\Pint{\textsc{PINT}}
+\def\PH{\mathcal{PH}}
+
+\tikzstyle{sort}=[fill=lightgray, rounded corners, draw=black]
+\tikzstyle{process}=[circle,draw,minimum size=15pt,font=\footnotesize,inner sep=1pt]
+\tikzstyle{black process}=[process, draw=blue, fill=red,text=black,font=\bfseries]
+\tikzstyle{highlighted process}=[current process, fill=gray]
+\tikzstyle{process box}=[fill=none,draw=black,rounded corners]
+\tikzstyle{current process}=[process,fill=blue]
+\tikzstyle{tick label}=[font=\footnotesize]
+\tikzstyle{tick}=[densely dotted]
+\tikzstyle{hit}=[->,>=angle 45]
+\tikzstyle{selfhit}=[min distance=30pt,curve to]
+\tikzstyle{bounce}=[densely dotted,>=stealth',->]
+\tikzstyle{hlhit}=[very thick]
+\tikzstyle{ulhit}=[draw=lightgray,fill=lightgray]
+\tikzstyle{pulhit}=[fill=lightgray]
+\tikzstyle{bulhit}=[draw=lightgray]
+
+\tikzstyle{hitless graph}=[every edge/.style={draw=red,-}]
+
+\tikzstyle{aS}=[every edge/.style={draw,->}]
+\tikzstyle{Asol}=[draw,circle,minimum size=5pt,inner sep=0]
+\tikzstyle{Aproc}=[draw]
+\tikzstyle{Aobj}=[]
+
+\renewcommand{\TState}[2]{
+  \foreach \proc in {#2} {
+        \only<#1>{ \node[current process] (\proc) at (\proc.center) {}; }
+  };
+}
+
+%\definecolor{darkred}{rgb}{0.5,0,0}
+\definecolor{lightred}{rgb}{1,0.8,0.8}
+\definecolor{lightgreen}{rgb}{0.7,1,0.7}
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+\definecolor{darkblue}{rgb}{0,0,0.5}
+\definecolor{darkyellow}{rgb}{0.5,0.5,0}
+\definecolor{lightyellow}{rgb}{1,1,0.6}
+\definecolor{darkcyan}{rgb}{0,0.6,0.6}
+\definecolor{darkorange}{rgb}{0.8,0.2,0}
+
+\definecolor{notsodarkgreen}{rgb}{0,0.7,0}
+
+%\definecolor{coloract}{rgb}{0,1,0}
+%\definecolor{colorinh}{rgb}{1,0,0}
+\colorlet{coloract}{darkgreen}
+\colorlet{colorinh}{red}
+\colorlet{coloractgray}{lightgreen}
+\colorlet{colorinhgray}{lightred}
+\colorlet{colorinf}{darkgray}
+\colorlet{coloractgray}{lightgreen}
+\colorlet{colorinhgray}{lightred}
+
+\colorlet{colorgray}{lightgray}
+
+
+\tikzstyle{grn}=[every node/.style={circle,draw=black,outer sep=2pt,minimum
+                size=15pt,text=black}, node distance=1.5cm]
+\tikzstyle{inh}=[>=|,-|,draw=colorinh,thick, text=black,label]
+\tikzstyle{act}=[->,>=triangle 60,draw=coloract,thick,color=coloract]
+\tikzstyle{inhgray}=[>=|,-|,draw=colorinhgray,thick, text=black,label]
+\tikzstyle{actgray}=[->,>=triangle 60,draw=coloractgray,thick,color=coloractgray]
+\tikzstyle{inf}=[->,draw=colorinf,thick,color=colorinf]
+%\tikzstyle{elabel}=[fill=none, above=-1pt, sloped,text=black, minimum size=10pt, outer sep=0, font=\scriptsize,draw=none]
+\tikzstyle{elabel}=[fill=none,text=black, above=-2pt,%sloped,
+minimum size=10pt, outer sep=0, font=\scriptsize, draw=none]
+%\tikzstyle{elabel}=[]
+
+
+\tikzstyle{plot}=[every path/.style={-}]
+\tikzstyle{axe}=[gray,->,>=stealth']
+\tikzstyle{ticks}=[font=\scriptsize,every node/.style={gray}]
+\tikzstyle{mean}=[thick]
+\tikzstyle{interval}=[line width=5pt,red,draw opacity=0.7]
+\definecolor{lightred}{rgb}{1,0.3,0.3}
+
+\tikzstyle{hl}=[yellow]
+\tikzstyle{hl2}=[orange]
+
+\tikzstyle{every matrix}=[ampersand replacement=\&]
+\tikzstyle{shorthandoff}=[]
+\tikzstyle{shorthandon}=[]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+% Commande À FAIRE
+\usepackage{color} % Couleurs du texte
+\newcommand{\afaire}[1]{\textcolor{red}{[À FAIRE : #1]}}
+\newcommand{\todo}[1]{\textcolor{darkgreen}{[\textcolor{red}{#1}]}}
+
+
+
+\colorlet{couleurtheme}{gray}  % Couleur principale du thème
+\colorlet{couleurcit}{gray}  % Couleur des citations
+\colorlet{couleurex}{blue}  % Couleur des citations
+\colorlet{couleurliens}{darkblue}  % Couleur des citations
+
+\usetheme{Pittsburgh}   % Thème général
+\usefonttheme{default}  % Thème de polices
+\setbeamertemplate{navigation symbols}{}  % Pas de menu de navigation
+%\setbeamertemplate{itemize item}[x]   % Puces des listes
+
+\usecolortheme[named=couleurtheme]{structure}    % Couleur de la structure : titres et puces
+%\setbeamercolor{normal text}{bg=black,fg=white}  % Couleur du texte
+\setbeamercolor{item}{fg=couleurtheme}           % Couleur des puces
+%\setbeamercolor{item projected}{fg=black}        % Couleur des recouvrements
+%\setbeamercolor{alerted text}{fg=yellow}         % ?
+
+\setbeamerfont{frametitle}{size=\Large}  % Police des titres
+
+
+% Flèche grise
+\newcommand{\f}{\textcolor{couleurtheme}{\textbf{$\rightarrow$\ }}}
+
+% Environnement liste avec flèches
+\newenvironment{fleches}{%
+\begin{list}{}{%
+\setlength{\labelwidth}{1em}% largeur de la boîte englobant le label
+\setlength{\labelsep}{0pt}% espace entre paragraphe et l’étiquette
+%\setlength{\itemsep}{1pt}
+%\setlength{\leftmargin}{\labelwidth+\labelsep}% marge de gauche
+\renewcommand{\makelabel}{\f}%
+}}{\end{list}}
+
+% Liste sans puce
+\newenvironment{liste}{%
+\begin{list}{}{%
+\setlength{\labelwidth}{0em}% largeur de la boîte englobant le label
+\setlength{\labelsep}{0pt}% espace entre paragraphe et l’étiquette
+\setlength{\leftmargin}{0em}% marge de gauche
+%\renewcommand{\makelabel}{\f}%
+}}{\end{list}}
+
+% Style des exemples
+\newcommand{\ex}[1]{\textcolor{couleurex}{#1}}
+\newcommand{\qex}[1]{\quad \ex{#1}}
+\newcommand{\rex}[1]{\hfill \ex{#1}}
+
+\newcommand{\lien}[1]{\textcolor{couleurliens}{\texttt{\underline{\ex{#1}}}}}
+
+\newcommand{\console}[1]{\textcolor{darkgray}{#1}}
+
+% Style des citations
+\newcommand{\tscite}[1]{\textcolor{couleurcit}{#1}}
+\newcommand{\tcite}[1]{\textcolor{couleurcit}{[#1]}}
+
+% Style de texte mis en valeur
+\newcommand{\tval}[1]{\textbf{#1}}
+
+% Un vrai symbole pour l'ensemble vide
+\renewcommand{\emptyset}{\varnothing}
+
+% Pour définir la conférence et son nom court
+\newcommand{\conference}[2]{\def\theconference{#2}
+\def\insertshortconference{\ifthenelse{\equal{#1}{-}}{#2}{\ifthenelse{\equal{#1}{}}{#2}{#1}}}}
+
+
+
+\newcommand{\thedate}{2014/02/07}
+\date{\thedate}
+\conference{Thèse}{--- Thèse ---\\Analyse et apprentissage automatique de modèles biologiques à larges échelles à partir des données des séries temporelles}
+\title{Rapport d' avancement de la thèse}
+\author{Louis Fippo Fitime}
+
+
+
+
+\setbeamertemplate{footline}{\color{gray}%
+\scriptsize
+\quad\strut%
+\insertauthor%
+\hfill%
+\insertframenumber/\inserttotalframenumber%
+\hfill%
+\insertshortconference{} --- \thedate\quad\strut
+}
+
+
+\newcommand{\headersep}{$\circ$} % \bullet \triangleright
+
+\setbeamertemplate{headline}{\color{gray}%
+\vskip0.3em%
+\quad\strut%
+{\scriptsize\color{black}%
+% Gris si une section existe
+\ifthenelse{\equal{\thesection}{0}}{}{%
+\ifthenelse{\equal{\lastsection}{x}}{}{%
+\color{gray}%
+}}%
+\insertshorttitle
+\ifthenelse{\equal{\thesection}{0}}{}{%
+\ifthenelse{\equal{\lastsection}{x}}{}{%
+~\headersep{} %
+% Gris si une sous-section existe
+\ifthenelse{\equal{\thesubsection}{0}}{\color{black}}{%
+\ifthenelse{\equal{\lastsubsection}{x}}{\color{black}}{%
+\color{gray}%
+}}%
+\insertsectionhead%
+%
+\ifthenelse{\equal{\thesubsection}{0}}{}{%
+\ifthenelse{\equal{\lastsubsection}{x}}{}{%
+~\headersep{} \color{black}\insertsubsectionhead%
+%
+}}}}}%
+\vskip-5ex%
+}
+
+
+
+\def \scaleex {0.85}
+\def \scaleinf {0.6}
+
+\colorlet{colorb}{darkgray}
+\colorlet{colora1}{yellow}
+\colorlet{colora0}{green}
+\colorlet{colora1font}{darkyellow}
+\colorlet{colora0font}{darkgreen}
+
+\colorlet{exanswer}{blue}
+\colorlet{colorgray}{lightgray}
+
+\definecolor{colortitle}{rgb}{0.54,0.8,0.9}
+
+
+\begin{document}
+
+\begin{frame}[plain,label=title]
+
+% Cadre de titre
+\begin{center}
+\vspace{0.5cm}
+\setbeamercolor{postit}{fg=black,bg=colortitle}
+\begin{beamercolorbox}[sep=0.5em]{postit}
+\centering
+\Large
+\textbf{%
+{\normalsize\theconference{}}\\~\\%
+\inserttitle
+}
+\end{beamercolorbox}
+
+% Auteurs et instituts
+\par
+\medskip
+\normalsize
+Louis Fippo Fitime$^{1,2}$
+\footnotesize
+
+\texttt{louis.fippo-fitime@irccyn.ec-nantes.fr}
+
+%penser à finir ma page perso
+%\url{http://www.irccyn.ec-nantes.fr/~folschet/}
+
+
+\end{center}
+
+
+\end{frame}
+
+
+\input{parts/ex.tex}
+
+\section{Introduction}
+%\input{parts/intro.tex}
+
+\section{Rapport du 10 Fevrier 2014}
+%\subsection{The Process Hitting}
+%\input{parts/def_ph.tex}
+%\subsection{Thomas' Modeling}
+%\input{parts/def_thomas.tex}
+
+%%%\subsection{Answer Set Programming}
+%%%\input{parts/impl.tex}
+
+
+
+\section[x]{Bibliography}
+\input{parts/biblio.tex}
+
+\end{document}

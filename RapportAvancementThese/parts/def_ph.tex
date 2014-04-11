@@ -1,0 +1,123 @@
+% Définition du Process Hitting + sortes coopératives
+
+\begin{frame}
+  \frametitle{The Process Hitting modeling}
+  \framesubtitle{\tcite{PMR12-MSCS}}
+
+% 1 : Sortes
+\only<1>{
+\tikzstyle{process}=[circle,minimum size=15pt,font=\footnotesize,inner sep=1pt]
+\tikzstyle{tick label}=[color=white, font=\footnotesize]
+\tikzstyle{tick}=[transparent]
+\tikzstyle{hit}=[transparent]
+\tikzstyle{selfhit}=[transparent, min distance=30pt,curve to]
+\tikzstyle{bounce}=[transparent]
+\tikzstyle{hlhit}=[transparent]
+\begin{center}\scalebox{\scaleex}{
+\begin{tikzpicture}
+\exphdef
+\end{tikzpicture}
+}\end{center}
+}
+
+% 2 : Processus
+\only<2>{
+\tikzstyle{process}=[circle,draw,minimum size=15pt,font=\footnotesize,inner sep=1pt]
+\tikzstyle{tick label}=[font=\footnotesize]
+\tikzstyle{tick}=[densely dotted]
+\tikzstyle{hit}=[transparent]
+\tikzstyle{selfhit}=[transparent, min distance=30pt,curve to]
+\tikzstyle{bounce}=[transparent]
+\tikzstyle{hlhit}=[transparent]
+\begin{center}\scalebox{\scaleex}{
+\begin{tikzpicture}
+\exphdef
+\end{tikzpicture}
+}\end{center}
+}
+
+% 3 : États
+\only<3>{
+\tikzstyle{hit}=[transparent]
+\tikzstyle{selfhit}=[transparent, min distance=30pt,curve to]
+\tikzstyle{bounce}=[transparent]
+\tikzstyle{hlhit}=[transparent]
+\begin{center}\scalebox{\scaleex}{
+\begin{tikzpicture}
+\exphdef
+
+\TState{3}{a_0,b_1,z_0}
+\end{tikzpicture}
+}\end{center}
+}
+
+% 4 : Actions
+\only<4->{
+\tikzstyle{tick}=[densely dotted]
+\tikzstyle{hit}=[->,>=angle 45]
+\tikzstyle{selfhit}=[min distance=30pt,curve to]
+\tikzstyle{bounce}=[densely dotted,>=stealth',->]
+\tikzstyle{hlhit}=[very thick]
+\begin{center}\scalebox{\scaleex}{
+\begin{tikzpicture}
+\exphdef
+\TState{4}{a_0,b_1,z_0}
+\TState{5}{a_0,b_1,z_1}
+\TState{6}{a_1,b_1,z_1}
+\TState{7}{a_1,b_1,z_2}
+\end{tikzpicture}
+}\end{center}
+}
+
+%\medskip
+\begin{liste}
+  \item \tval{Sorts}: components \qex{$a$, $b$, $z$}
+\pause[2]
+  \item \tval{Processes}: local states / levels of expression \qex{$z_0$, $z_1$, $z_2$}
+\pause[3]
+  \item \tval{States}: sets of active processes%
+  \only<3-4>{\qex{$\PHetat{a_0, b_1, z_0}$}}%
+  \only<5>{\qex{$\PHetat{a_0, b_1, z_1}$}}%
+  \only<6>{\qex{$\PHetat{a_1, b_1, z_1}$}}%
+  \only<7>{\qex{$\PHetat{a_1, b_1, z_2}$}}%
+\pause[4]
+  \item \tval{Actions}: dynamics \qex{\only<4>{\underline}{$\PHfrappe{b_1}{z_0}{z_1}$}, \only<4-5>{\underline}{$\PHfrappe{a_0}{a_0}{a_1}$}, \only<6>{\underline}{$\PHfrappe{a_1}{z_1}{z_2}$}}
+\end{liste}
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{The Process Hitting modeling}
+  \framesubtitle{\tcite{PMR12-MSCS}}
+
+\begin{center}\scalebox{\scaleex}{
+\begin{tikzpicture}
+\exphcoop
+\end{tikzpicture}
+}\end{center}
+
+\only<-14>{
+\begin{liste}
+  \item How to introduce some \tval{cooperation} between sorts? \qex{$\PHfrappe{a_1 \wedge b_0}{z_1}{z_2}$}
+\pause[4]
+  \item Solution: a \tval{cooperative sort} \qex{$ab$} \only<12->{\quad to express \qex{$a_1 \wedge b_0$}}
+\pause[8]
+  \item Constraint: each configuration is represented by one process \qex{$\PHetat{a_1,b_0} \pause[11]\Rightarrow ab_{10}$}
+\pause[14]
+  \item Advantage: regular sort; drawbacks: complexity, temporal shift
+\end{liste}
+}
+
+\only<15->{
+The Process Hitting framework:
+
+\smallskip
+\begin{itemize}
+  \item \tval{Dynamic} modeling with an \tval{atomistic} point of view
+  \item Efficient \tval{static analysis} (fixed points, reachability)
+  \item Possible extensions (stochasticity, priorities)
+  \item Useful for the study of \tval{large biological models}
+\end{itemize}
+}
+\end{frame}

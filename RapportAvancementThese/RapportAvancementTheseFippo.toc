@@ -1,0 +1,8 @@
+\beamer@endinputifotherversion {3.10pt}
+\select@language {english}
+\beamer@sectionintoc {1}{Introduction}{2}{0}{1}
+\beamer@sectionintoc {2}{Rapport du 10 Fevrier 2014/Resultats et analyses des Simulations}{2}{0}{2}
+\beamer@subsectionintoc {2}{1}{Les derni\IeC {\`e}rres r\IeC {\'e}solutions}{2}{0}{2}
+\beamer@subsectionintoc {2}{2}{Avancement}{2}{0}{2}
+\beamer@subsectionintoc {2}{3}{Les nouvelles r\IeC {\'e}solutions}{5}{0}{2}
+\beamer@sectionintoc {3}{Bibliography}{5}{0}{3}

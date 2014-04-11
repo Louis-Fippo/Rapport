@@ -1,0 +1,105 @@
+% Inférence du GI - Méthode projections
+
+\begin{frame}
+  \frametitle{Inferring the Interaction Graph}
+  \framesubtitle{Projections Approach}
+
+\begin{columns}
+\begin{column}{0.65\textwidth}
+
+\only<-3>{
+\begin{center}\scalebox{\scaleinf}{
+\begin{tikzpicture}
+\path[use as bounding box] (-0.5,-0.8) rectangle (6.5,2.8);
+\exphinfproj
+
+% Actions mises en valeur
+\only<2-3>{
+  \THit{a_1}{}{ab_1}{.west}{ab_3}
+  \path[bounce,bend left] \TBounce{ab_1}{}{ab_3}{.south};
+  \THit{ab_3}{}{z_0}{.west}{z_1}}
+\only<2>{
+  \path[bounce,bend left] \TBounce{z_0}{}{z_1}{.south};}
+\only<3>{
+  \THit{a_1}{very thick,draw=blue,fill=blue}{z_0}{.west}{z_1}
+  \path[bounce,bend left,very thick,fill=blue] \TBounce{z_0}{very thick,draw=blue}{z_1}{.south};}
+
+\end{tikzpicture}
+}\end{center}
+}
+
+\only<4->{
+\begin{center}\scalebox{\scaleinf}{
+\begin{tikzpicture}
+\path[use as bounding box] (-0.5,-0.8) rectangle (6.5,2.8);
+\exphinfprojssc
+
+% Actions et processus mis en valeur
+\only<5->{
+  \node[current process,fill=colora1] (ha_1) at (a_1.center) {};
+  \THit{a_1}{}{z_0}{.west}{z_1}
+  \path[bounce,bend left] \TBounce{z_0}{}{z_1}{.south};
+  \only<6->{\node[current process,fill=colora1] (hz_1) at (z_1.center) {};}}
+\only<7->{
+  \node[current process,fill=colora0] (ha_0) at (a_0.center) {};
+  \THit{a_0}{}{z_1}{.west}{z_0}
+  \path[bounce,bend right,pulhit] \TBounce{z_1}{}{z_0}{.north};
+  \only<8->{\node[current process,fill=colora0] (hz_0) at (z_0.center) {};}}
+
+\end{tikzpicture}
+}\end{center}
+}
+
+\end{column}
+\begin{column}{0.45\textwidth}
+
+\only<4->{
+\begin{center}
+\begin{tikzpicture}[grn]
+\path[use as bounding box] (1,-0.5) rectangle (2.5,1.5);
+% Gènes noirs
+\only<1->{\node[inner sep=0] (a) at (0,1.5) {a};}
+\only<1>{\node[inner sep=0] (b) at (0,0) {b};}
+\only<1->{\node[inner sep=0] (z) at (2,0.75) {z};}
+%\only<1-2>{\path node[elabel, below=-1em of a] {$0..1$}; \path node[elabel, below=-1em of b] {$0..1$}; \path node[elabel, below=-1em of z] {$0..2$};}
+% Gènes gris
+\only<2->{\node[colorgray,inner sep=0] (b) at (0,0) {b};}
+% Arc noir
+\only<2,4-8>{\path (a) edge[inf] node[elabel,above=-2pt] {\only<9->{$\textcolor{exanswer}{+1}$}\only<-8>{\phantom{$+1$}}} (z);}
+% Arc coloré
+\only<9->{\path (a) edge[act,very thick,notsodarkgreen] node[elabel,above=-2pt] {\only<9->{$\textcolor{exanswer}{+1}$}\only<-8>{\phantom{$+1$}}} (z);}
+% Arc gris
+\only<3->{\path (b) edge[inf,draw=colorgray,fill=colorgray] node[colorgray,elabel, below=-2pt] {\phantom{$+$}} (z) ;}
+\end{tikzpicture}
+\end{center}
+}
+
+\end{column}
+\end{columns}
+
+\bigskip
+
+\tval{Idea:} Reducing the model to keep only the interesting information
+
+\quad \f Reducing by removing the cooperative sorts
+
+\pause[2]
+\begin{itemize}
+  \item Merge \only<11->{\textcolor{red}{\textbf{intelligently}} }“queuing” the actions
+  \item[] \qex{$\PHfrappe{a_1}{ab_{01}}{\underline{ab_{11}}}$} and \ex{$\PHfrappe{\underline{ab_{11}}}{z_0}{z_1}$}\pause[3] will become \ex{$\PHfrappe{a_1}{z_0}{z_1}$}
+\pause[5]
+  \item For each gene [\ex{$a$}]\pause[6], find the focal processes
+\pause[9]
+  \item[] \quad \f $\textcolor{colora0font}{a_0} < \textcolor{colora1font}{a_1}$ and
+                   $\textcolor{colora0font}{\{z_0\}} \preccurlyeq \textcolor{colora1font}{\{z_1\}} \Rightarrow \text{activation (}\textcolor{exanswer}{+}\text{)
+                    \& threshold (}\textcolor{exanswer}{1}\text{)}$
+\end{itemize}
+\pause[10]
+\tval{Advantage:} no exhaustive configurations enumeration
+
+\pause[11]
+\tval{Difficulties:} Abusive projections
+\begin{fleches}
+  \item Rework this approach
+\end{fleches}
+\end{frame}

@@ -1,0 +1,11 @@
+\beamer@endinputifotherversion {3.10pt}
+\select@language {english}
+\beamer@sectionintoc {1}{Introduction}{2}{0}{1}
+\beamer@sectionintoc {2}{Frameworks Definitions}{4}{0}{2}
+\beamer@subsectionintoc {2}{1}{The Process Hitting}{4}{0}{2}
+\beamer@subsectionintoc {2}{2}{Thomas' Modeling}{26}{0}{2}
+\beamer@sectionintoc {3}{Translating a Process Hitting into a BRN}{37}{0}{3}
+\beamer@subsectionintoc {3}{1}{Interaction Graph Inference}{40}{0}{3}
+\beamer@subsectionintoc {3}{2}{Parametrization Inference}{61}{0}{3}
+\beamer@sectionintoc {4}{Outlook \& Conclusion}{73}{0}{4}
+\beamer@sectionintoc {5}{Bibliography}{78}{1}{5}

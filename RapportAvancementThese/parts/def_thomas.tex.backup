@@ -1,0 +1,191 @@
+% Définition du modèle de Thomas
+
+\colorlet{light}{colorgray}
+
+\begin{frame}
+  \frametitle{Biological Regulatory Network}
+  \framesubtitle{\tcite{RCB08}}
+
+\begin{tabular}{cccc}
+
+\begin{tikzpicture}[grn]
+\path[use as bounding box] (-0.7,-0.3) rectangle (2.5,2);
+% Nœuds noirs
+\only<1,3->{
+  \node[inner sep=0] (z) at (2,0.75) {z};
+  \node[inner sep=0] (a) at (0,1.5) {a};
+  \node[inner sep=0] (b) at (0,0) {b};
+  \path
+    node[elabel, below=-1em of a] {$0..1$}
+    node[elabel, below=-1em of b] {$0..1$}
+    node[elabel, below=-1em of z] {$0..2$};}
+% Nœuds grisés
+\only<2>{
+  \node[inner sep=0,light] (z) at (2,0.75) {z};
+  \node[inner sep=0,light] (a) at (0,1.5) {a};
+  \node[inner sep=0,light] (b) at (0,0) {b};
+  \path
+    node[elabel, below=-1em of a,light] {$0..1$}
+    node[elabel, below=-1em of b,light] {$0..1$}
+    node[elabel, below=-1em of z,light] {$0..2$};}
+
+% Arcs colorés
+\only<1,4->{\path
+  (a) edge[inh,loop left=10] node[elabel, left] {$1-$} (a)
+  (a) edge[act] node[elabel, above=-2pt] {$1+$} (z)
+  (b) edge[inh] node[elabel, below=-2pt] {$1-$} (z);}
+% Arcs grisés
+\only<2-3>{\path
+  (a) edge[inhgray,loop left=10] node[elabel, left,light] {$1-$} (a)
+  (a) edge[actgray] node[elabel, above=-2pt,light] {$1+$} (z)
+  (b) edge[inhgray] node[elabel, below=-2pt,light] {$1-$} (z);}
+\end{tikzpicture}
+&%
+\only<2-5>{\color{light}}%
+\begin{tabular}[b]{c|c}
+  $\omega$ & $k_{z, \omega}$ \\
+\hline
+  $\emptyset$ & $[1;1]$ \\
+  $\{b\}$ & $[0;0]$ \\
+  \only<7-8>{\color{couleurex}}$\{a\}$ & \only<7-8>{\color{couleurex}}$[2;2]$ \\
+  $\{a;b\}$ & $[1;1]$
+\end{tabular}
+&
+\only<2-8>{\color{light}}%
+\begin{tabular}[b]{c|c}
+  $\omega$ & $k_{a, \omega}$ \\
+\hline
+  $\emptyset$ & $[0;1]$ \\
+  $\{a\}$ & $[0;0]$
+\end{tabular}
+&
+\only<2-9>{\color{light}}%
+\begin{tabular}[b]{c|c}
+  $\omega$ & $k_{b, \omega}$ \\
+\hline
+  $\emptyset$ & $[0;1]$
+\end{tabular}
+\\
+\only<2-4>{$\underbrace{\text{\hspace{3cm}}}_{\text{Interaction Graph}}$}%
+&
+\multicolumn{3}{r}{\only<5->{$\underbrace{\text{\hspace{6.5cm}}}_\text{Parametrization}$}}
+\end{tabular}
+
+\bigskip
+
+% Historical model...
+\only<1>{
+
+\bigskip
+\begin{liste}
+  \item \tval{Historical bio-informatics model} for studying genes interactions
+  \item Widely used and well-adapted to represent dynamic gene systems
+\end{liste}
+}
+
+% Interaction Graph
+\only<2-4>{
+\tval{Interaction Graph}: structure of the system (genes \& interactions)
+
+\pause[3]
+\medskip
+\begin{liste}
+  \item \tval{Nodes}: genes
+  \begin{fleches}
+    \item Name \qex{$a$, $b$, $z$}
+    \item Possible values (levels of expression) \qex{$0..1$, $0..2$}
+  \end{fleches}
+\pause[4]
+  \item \tval{Edges}: interactions
+  \begin{fleches}
+    \item Type (activation or inhibition) \qex{$+$ / $-$}
+    \item Threshold \qex{$1$}
+  \end{fleches}
+\end{liste}
+}
+
+% Parametrization
+\only<5->{
+\medskip
+\tval{Parametrization}: strength of the influences (evolution tendencies)
+
+\pause[6]
+\medskip
+\begin{liste}
+  \item Maps of tendencies for each gene
+  \begin{fleches}
+    \item To any \tval{set of predecessors} \qex{$\omega$}
+    \item Corresponds a \tval{parameter} \qex{$k_{x,\omega}$}
+  \end{fleches}
+\pause[7]
+  \item \ex{“$k_{z, \{a\}} = [2;2]$”} \quad means: \qex{“$z$ tends to \only<7>{$[2;2]$}\only<8->{$2$} when $a \only<7>{\geq}\only<8->{=} 1$ and $b \only<7>{< 1}\only<8->{= 0}$”}
+\end{liste}
+\pause[10]
+}
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Biological Regulatory Network}
+  \framesubtitle{\tcite{RCB08}}
+
+\begin{tabular}{cccc}
+
+\begin{tikzpicture}[grn]
+\path[use as bounding box] (-0.7,-0.3) rectangle (2.5,2);
+\node[inner sep=0] (z) at (2,0.75) {z};
+\node[inner sep=0] (a) at (0,1.5) {a};
+\node[inner sep=0] (b) at (0,0) {b};
+\path
+  node[elabel, below=-1em of a] {$0..1$}
+  node[elabel, below=-1em of b] {$0..1$}
+  node[elabel, below=-1em of z] {$0..2$};
+\path
+  (a) edge[inh,loop left=10] node[elabel, left] {$1-$} (a)
+  (a) edge[act] node[elabel, above=-2pt] {$1+$} (z)
+  (b) edge[inh] node[elabel, below=-2pt] {$1-$} (z);
+\end{tikzpicture}
+&
+\begin{tabular}[b]{c|c}
+  $\omega$ & $k_{z, \omega}$ \\
+\hline
+  $\emptyset$ & $[1;1]$ \\
+  $\{b\}$ & $[0;0]$ \\
+  $\{a\}$ & $[2;2]$ \\
+  $\{a;b\}$ & $[1;1]$
+\end{tabular}
+&
+\begin{tabular}[b]{c|c}
+  $\omega$ & $k_{a, \omega}$ \\
+\hline
+  $\emptyset$ & $[0;1]$ \\
+  $\{a\}$ & $[0;0]$
+\end{tabular}
+&
+\begin{tabular}[b]{c|c}
+  $\omega$ & $k_{b, \omega}$ \\
+\hline
+  $\emptyset$ & $[0;1]$
+\end{tabular}
+\\
+\multicolumn{4}{r}{$\underbrace{\text{\hspace{10.2cm}}}_{\text{Biological Regulatory Network}}$}
+\end{tabular}
+
+\bigskip
+
+\begin{itemize}
+  \item[\f] All needed information to run the model or study its dynamics:
+  \begin{itemize}\normalsize
+    \item Build the State Graph
+    \item Find reachability properties, fixed points, attractors
+    \item Other properties...
+  \end{itemize}
+\end{itemize}
+
+\begin{itemize}
+  \item[\f] \tval{Strengths}: well adapted for the study of biological systems
+  \item[\f] \tval{Drawbacks}: inherent complexity; needs the full\\
+    \quad \quad specification of cooperations
+\end{itemize}
+\end{frame}

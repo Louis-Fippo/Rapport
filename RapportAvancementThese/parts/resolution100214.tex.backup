@@ -1,0 +1,34 @@
+% Diapo des résolutions
+
+\begin{frame}[c]
+  \frametitle{Résolutions}
+
+
+%\pause
+\begin{itemize}
+  \item Faire les simulations sur des plus grandes durées de temps
+  \item Voir dans quelle(s) mesure(s) modifier le simulateur stochastique(pour éviter les frappes régulières)
+  \item Introduire la dégradation
+  \item Ne considérer que les fronts montants
+  \item Voir comment on peut se servir de l'analyse statique
+  \item Vérifier les oscillations par analyse statique 
+\end{itemize}
+
+%\textcolor{couleurtheme}{$\Rightarrow$} \fbox{\tval{\large Voyons ce qui a été réalisé...}} \textcolor{couleurtheme}{$\Leftarrow$}
+
+\end{frame}
+
+\begin{frame}[c]
+ \frametitle{Résolutions à froid}
+ 
+ \begin{itemize}
+  \item Faire une analyse des sous graphes
+     %\subitem définir un protocole de reconstruction des sous graphes
+    % \subitem faire des analyses sur ces sous graphes
+     %\subitem reconstruire le grand réseau par augmentation progressive des sous graphes.
+  \item Considérer les régulateurs comme étant toujours actif
+  \item Introduire des priorités aux actions du Process Hitting
+     %\subitem séparer les actions(celles des sortes coopératives par exemple)
+ \end{itemize}
+
+\end{frame}

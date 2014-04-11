@@ -1,0 +1,224 @@
+% Inférence du Graphe des Interactions
+
+
+
+\begin{frame}
+  \frametitle{Inferring the Interaction Graph}
+  \framesubtitle{~}
+
+\begin{columns}
+\begin{column}{0.65\textwidth}
+
+\begin{center}\scalebox{\scaleinf}{
+\begin{tikzpicture}
+\path[use as bounding box] (-0.5,-0.8) rectangle (6.5,2.8);
+\exphinf
+
+% Processus marqués
+\only<5-12>{\node[current process,fill=colorb] (hb_0) at (b_0.center) {};}
+\only<6-12>{
+  \node[current process,fill=colora1] (ha_1) at (a_1.center) {};
+  \node[current process,fill=colora1] (hab_2) at (ab_2.center) {};}
+\only<7-12>{
+  \node[current process,fill=colora0] (ha_0) at (a_0.center) {};
+  \node[current process,fill=colora0] (hab_0) at (ab_0.center) {};}
+\only<9-12>{
+  \node[current process,fill=colora1] (hz_2) at (z_2.center) {};}
+\only<11-12>{
+  \node[current process,fill=colora0] (hz_0) at (z_0.center) {};}
+
+\only<13->{\node[current process,fill=colorb] (hb_1) at (b_1.center) {};}
+\only<13->{
+  \node[current process,fill=colora1] (ha_1) at (a_1.center) {};
+  \node[current process,fill=colora1] (hab_3) at (ab_3.center) {};
+  \node[current process,fill=colora0] (ha_0) at (a_0.center) {};
+  \node[current process,fill=colora0] (hab_1) at (ab_1.center) {};}
+\only<15->{
+  \node[current process,fill=colora1] (hz_1) at (z_1.center) {};
+  \node[current process,fill=colora0,inner sep=0,minimum size=7pt,draw=none] (hz_1bis) at (z_1.center) {};}
+
+% Actions mises en valeur
+\only<8-9>{
+  \THit{ab_2}{}{z_1}{.north west}{z_2}
+  \THit{ab_2}{}{z_0}{.west}{z_1}
+  \path[bounce,bend left] \TBounce{z_1}{}{z_2}{.south} \TBounce{z_0}{}{z_1}{.south} ;}
+\only<10-11>{
+  \THit{ab_0}{}{z_2}{.west}{z_1}
+  \THit{ab_0}{}{z_1}{.south west}{z_0}
+  \path[bounce,bend right] \TBounce{z_2}{}{z_1}{.north} \TBounce{z_1}{}{z_0}{.north} ;}
+\only<14->{
+  \THit{ab_3}{}{z_2}{.west}{z_1}
+  \THit{ab_3}{}{z_0}{.west}{z_1}
+  \THit{ab_1}{}{z_2}{.west}{z_1}
+  \THit{ab_1}{}{z_0}{.west}{z_1}
+  \path[bounce,bend left] \TBounce{z_2}{bend right}{z_1}{.north} \TBounce{z_0}{}{z_1}{.south} ;}
+
+\end{tikzpicture}
+}\end{center}
+
+\end{column}
+\begin{column}{0.45\textwidth}
+
+\begin{center}
+\begin{tikzpicture}[grn]
+\path[use as bounding box] (1,-0.5) rectangle (2.5,1.5);
+% Gènes noirs
+\only<1-2,4->{\node[inner sep=0] (a) at (0,1.5) {a};}
+\only<1-2>{\node[inner sep=0] (b) at (0,0) {b};}
+\only<1->{\node[inner sep=0] (z) at (2,0.75) {z};}
+%\only<1-2>{\path node[elabel, below=-1em of a] {$0..1$}; \path node[elabel, below=-1em of b] {$0..1$}; \path node[elabel, below=-1em of z] {$0..2$};}
+% Gènes gris
+\only<3>{\node[colorgray,inner sep=0] (a) at (0,1.5) {a};}
+\only<3->{\node[colorgray,inner sep=0] (b) at (0,0) {b};}
+
+%\newcolumntype{M}[1]{>{\raggedright}m{#1}}
+
+% Arc noir
+\only<2,4-16>{\path (a) edge[inf] node[elabel,above right=-2.4em,font=\scriptsize] {\begin{tabular*}{3cm}{c}%
+$\color{white}\left\{\color{black}\text{\begin{tabular*}{2cm}{l}%
+  $\only<13->{\{b = 1\} \only<15>{\phantom{\Rightarrow \sim}}\only<16->{\Rightarrow {\color{exanswer}\sim}}}$\tabularnewline%
+  $\only<5->{\{b = 0\} \only<12->{\Rightarrow {\color{exanswer}1+}}}$%
+\end{tabular*}}\only<-16>{\right.}\only<17->{\right\}\textcolor{exanswer}{1+}}$%
+\end{tabular*}} (z) ;}
+\only<2>{\path (b) edge[inf] node[elabel, below=-2pt] {$\only<99->{-\!\only<1->{1}}$} (z) ;}
+% Arc coloré
+\only<17->{\path (a) edge[act,very thick,notsodarkgreen] node[elabel,above right=-2.4em,font=\scriptsize] {\begin{tabular*}{3cm}{c}%
+$\color{white}\left\{\color{black}\text{\begin{tabular*}{2cm}{l}%
+  $\only<13->{\{b = 1\} \only<15>{\phantom{\Rightarrow \sim}}\only<16->{\Rightarrow {\color{exanswer}\sim}}}$\tabularnewline%
+  $\only<5->{\{b = 0\} \only<12->{\Rightarrow {\color{exanswer}1+}}}$%
+\end{tabular*}}\only<-16>{\right.}\only<17->{\right\}\textcolor{exanswer}{1+}}$%
+\end{tabular*}} (z) ;}
+% Arcs gris
+\only<3>{\path (a) edge[inf,draw=colorgray,fill=colorgray] node[colorgray,elabel, above=-2pt] {$\only<1>{+\!\only<2->{1}}$} (z) ;}
+\only<3->{\path (b) edge[inf,draw=colorgray,fill=colorgray] node[colorgray,elabel, below=-2pt] {$\only<1>{-\!\only<1->{1}}$} (z) ;}
+\end{tikzpicture}
+\end{center}
+
+\end{column}
+\end{columns}
+
+\bigskip
+
+% Intro méthode exhaustive
+\only<1>{
+\bigskip
+\bigskip
+\begin{itemize}
+  \item \tval{Inputs:} a Process Hitting model
+  \item \tval{Output:} An interaction graph with all information:
+  \item[] \quad \f edges, signs and thresholds
+\end{itemize}
+
+\medskip
+\begin{itemize}
+  \item \tval{Difficulties:} Process Hitting is more atomistic than BRNs
+  \item \tval{Idea:} Exhaustive search in all possible configurations
+\end{itemize}
+}
+
+% Méthode
+\begin{itemize}
+\pause[3]
+  \item For each gene [\ex{$z$}]\pause[4], consider one possible regulator [\ex{$a$}]
+\pause[5]
+  \item Consider a \tval{configuration} of all other regulators [\ex{$\{b = \only<-12>{0}\only<13->{1}\}$}]
+  \begin{itemize}
+\pause[6]
+    \item For each process of \ex{$a$}\pause[8], determine the set of \tval{focal processes} of \ex{$z$}
+\pause[12]
+\smallskip
+    \item Comparing the sets of focal processes gives the influence
+    \begin{itemize}
+      \item[] $\textcolor{colorb}{\{b = 0\}}$ \f $\textcolor{colora0font}{a_0} < \textcolor{colora1font}{a_1}$ and
+                   $\textcolor{colora0font}{\{z_0\}} \preccurlyeq \textcolor{colora1font}{\{z_2\}} \Rightarrow \text{activation (}\textcolor{exanswer}{+}\text{) \&
+                    threshold = \ex{$1$}}$
+\pause[16]
+      \item[] $\textcolor{colorb}{\{b = 1\}}$ \f $\textcolor{colora0font}{a_0} < \textcolor{colora1font}{a_1}$ and
+                   $\textcolor{colora0font}{\{z_1\}} = \textcolor{colora1font}{\{z_1\}} \Rightarrow \text{no influence (}\textcolor{exanswer}{\sim}\text{)}$
+    \end{itemize}
+  \end{itemize}
+\pause[17]
+  \item \only<18->{\underline}{If ossible}, determine the general influence of \ex{$a$} on \ex{$z$}
+\end{itemize}
+\pause[18]
+
+\smallskip
+Problematic cases:\\
+\smallskip
+$\left.\text{\begin{tabular}{l}
+  \f No focal processes (cycle)\\
+  \f Opposite influences (\ex{$+$} \& \ex{$-$})
+ \end{tabular}}\right\} \Rightarrow \text{ Unsigned edge}$
+\end{frame}
+
+
+
+\begin{frame}[c]
+  \frametitle{Interaction Graph Inference}
+  \framesubtitle{Implementation}
+
+\tval{Programming} in ASP:
+\begin{itemize}
+  \item Formal mathematical definitions \f ASP
+  \item Use of aggregates (enumeration = \ex{1 active process per sort})
+\end{itemize}
+
+\bigskip
+\pause
+
+\tval{Calling} ASP:
+\begin{itemize}
+  \item \tval{Pint} (existing OCaml library) to read Process Hitting models
+  \begin{itemize}
+    \item[] Free library + examples: \lien{http://processhitting.wordpress.com/}
+  \end{itemize}
+  \item \tval{OCaml} to translate these models to an ASP description
+  \item[] \quad and parse the results
+  \item \tval{Clingo} to solve the description with the adequate program
+\end{itemize}
+
+\end{frame}
+
+
+
+\begin{frame}[c]
+  \frametitle{Interaction Graph Inference}
+  \framesubtitle{Results}
+
+\tval{Results}: Very fast execution (personal laptop, 1.83GHz dual-core)
+\begin{itemize}
+  \item[]
+  \begin{itemize}
+    \item[] $<$ 1s for 20 \& 40 genes models \f 50 \& 54 edges\quad\tval{\ex{[EGFR20 \& TCRSIG40]}}
+    \item[] $\simeq$ 13s for a 94 genes model \f 169 edges\quad\tval{\ex{[TCRSIG94]}}
+    \item[] $\simeq$ 4min for a 104 genes model \f 241 edges\quad\tval{\ex{[EGFR104]}}
+  \end{itemize}
+\end{itemize}
+
+\bigskip
+\small
+\begin{tabular}{c||c|c|c|c|}
+  \tval{Model name} & Sorts & Cooperative sorts & Processes & Actions\\
+\hline
+  \tval{\ex{[EGFR20]}} & 20 & 22 & 152 & 399\\
+\hline
+  \tval{\ex{[TCRSIG40]}} & 40 & 14 & 156 & 301\\
+\hline
+  \tval{\ex{[TCRSIG94]}} & 94 & 39 & 448 & 1124\\
+\hline
+  \tval{\ex{[EGFR104]}} & 104 & 89 & 748 & 2356\\
+\hline
+\end{tabular}
+
+\bigskip
+\begin{itemize}
+  \item \tval{\ex{[EGFR20]}}: Epidermal Growth Factor Receptor, by Özgür Sahin et al.
+  \item \tval{\ex{[EGFR104]}}: Epidermal Growth Factor Receptor, by Regina Samaga et al.
+  \item \tval{\ex{[TCRSIG40]}}: T-Cell Receptor Signaling, by Steffen Klamt et al.
+  \item \tval{\ex{[TCRSIG94]}}: T-Cell Receptor Signaling, by Julio Saez-Rodriguez et al.
+\end{itemize}
+
+%\medskip
+%See also: \tcite{Paulevé11}, \tcite{PRM10-TCSB}, \tcite{PMR12-MSCS}.
+
+\end{frame}

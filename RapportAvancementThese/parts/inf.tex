@@ -1,0 +1,76 @@
+% Introduction à la traduction
+
+\begin{frame}[c]
+  \frametitle{Inferring a BRN with Thomas' parameters}
+  \framesubtitle{~}
+
+\begin{center}
+\scalebox{\scaleinf}{
+\begin{tikzpicture}
+\path[use as bounding box] (-0.5,-0.8) rectangle (6.5,4);
+\exphinfblack
+\end{tikzpicture}
+}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}
+\path[use as bounding box] (1,1) rectangle (4,1.5);
+\only<2->{
+  \path[draw] (1, 1.8) edge[->,draw,very thick] node[left=3pt,circle,draw=black,outer sep=2pt,minimum size=15pt,text=black] {1} (0, 0);}
+
+\only<3->{
+\node[circle,draw=black,inner sep=0,minimum size=5pt,fill=black] (s2) at (2,0.7) {};
+\node[left=4pt of s2,circle,draw=black,outer sep=2pt,minimum size=15pt,text=black,very thick] (e2) at (2,0.8) {2};
+\path[draw] (2.25, 1.8) edge[draw,very thick] (s2);
+\path[draw] (1, -0.25) edge[draw,very thick] (s2);
+\path[draw] (s2) edge[->,draw,very thick] (3.75, 0);}
+\end{tikzpicture}
+\end{center}
+
+\begin{columns}
+\begin{column}{0.6\textwidth}
+
+\begin{center}
+\begin{tikzpicture}[grn]
+\path[use as bounding box] (0.5,-0.5) rectangle (2,1.5);
+% Gènes noirs
+\only<2->{
+  \node[inner sep=0] (a) at (0,1.5) {a};
+  \node[inner sep=0] (b) at (0,0) {b};
+  \node[inner sep=0] (z) at (2,0.75) {z};}
+% Gènes gris
+\only<1>{
+  \node[inner sep=0,colorgray] (a) at (0,1.5) {a};
+  \node[inner sep=0,colorgray] (b) at (0,0) {b};
+  \node[inner sep=0,colorgray] (z) at (2,0.75) {z};}
+
+% Arcs colorés
+\only<2->{
+  \path (a) edge[act] node[elabel,above=-2pt] {$1+$} (z);
+  \path (b) edge[inh] node[elabel,below=-2pt] {$1-$} (z);}
+% Arcs grisés
+\only<1>{
+  \path (a) edge[actgray] node[elabel,above=-2pt,colorgray] {$1+$} (z);
+  \path (b) edge[inhgray] node[elabel,below=-2pt,colorgray] {$1-$} (z);}
+\end{tikzpicture}
+\end{center}
+
+\end{column}
+\begin{column}{0.4\textwidth}
+
+\only<1-2>{\color{colorgray}}
+\begin{tabular}{c|c}
+  $\omega$ & $k_{z, \omega}$ \\
+\hline
+  $\emptyset$ & $1$ \\
+  $\{b\}$ & $0$ \\
+  $\{a\}$ & $2$ \\
+  $\{a;b\}$ & $1$
+\end{tabular}
+
+\end{column}
+\end{columns}
+
+
+\end{frame}

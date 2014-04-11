@@ -1,0 +1,291 @@
+% Exemples
+
+%%% Exemple pour la définition du Process Hitting %%%
+\def \exphdef {
+\path[use as bounding box] (-0.5,-0.5) rectangle (6.5,4.5);
+
+\TSort{(0,3)}{a}{2}{l}
+\TSort{(0,0)}{b}{2}{l}
+\TSort{(6,1)}{z}{3}{r}
+
+\THit{a_1}{}{z_1}{.west}{z_2}
+\THit{b_1}{}{z_0}{.west}{z_1}
+\THit{a_0}{out=250,in=200,selfhit}{a_0}{.west}{a_1}
+
+\path[bounce,bend left]
+\TBounce{z_0}{}{z_1}{.south}
+\TBounce{z_1}{}{z_2}{.south}
+\TBounce{a_0}{}{a_1}{.south}
+;
+}
+
+
+
+%%% Exemple pour la coopération %%%
+\def \exphcoop {
+\path[use as bounding box] (-0.5,-0.5) rectangle (6.5,4.5);
+
+% Actions de màj grisées
+\only<6->{
+\THit{a_1}{ulhit,color=lightgray}{ab_0}{.west}{ab_2}
+\THit{a_1}{ulhit,color=lightgray}{ab_1}{.west}{ab_3}
+\path[bounce,bend left,pulhit] \TBounce{ab_0}{bulhit}{ab_2}{.south} \TBounce{ab_1}{bulhit}{ab_3}{.south} ;
+}
+
+\only<7->{
+\THit{a_0}{ulhit}{ab_2}{.west}{ab_0}
+\THit{a_0}{ulhit}{ab_3}{.west}{ab_1}
+\path[bounce,bend right,pulhit] \TBounce{ab_2}{bulhit}{ab_0}{.north} \TBounce{ab_3}{bulhit}{ab_1}{.north} ;
+}
+
+\only<8->{
+\THit{b_0}{ulhit}{ab_3}{.west}{ab_2}
+\THit{b_0}{ulhit}{ab_1}{.west}{ab_0}
+\THit{b_1}{ulhit}{ab_0}{.west}{ab_1}
+\THit{b_1}{ulhit}{ab_2}{.west}{ab_3}
+\path[bounce,bend right,pulhit] \TBounce{ab_1}{bulhit}{ab_0}{.north} \TBounce{ab_3}{bulhit}{ab_2}{.north} ;
+\path[bounce,bend left,pulhit] \TBounce{ab_0}{bulhit}{ab_1}{.south} \TBounce{ab_2}{bulhit}{ab_3}{.south} ;
+}
+
+% Sortes
+\TSort{(0,3)}{a}{2}{l}
+\TSort{(0,0)}{b}{2}{l}
+\TSort{(6,1)}{z}{3}{r}
+
+% Deux actions disjointes en exemple
+\only<2-3>{
+\THit{a_1}{}{z_1}{.north west}{z_2}
+\path[bounce,bend left]
+\TBounce{z_1}{}{z_2}{.south} ;
+
+\THit{b_0}{}{z_1}{.west}{z_2}
+\path[bounce,bend left=55]
+\TBounce{z_1}{}{z_2}{.south west} ;
+}
+
+% Processus d'exemple
+\TState{3}{a_1,b_1,z_1}
+
+% Sorte coopérative et arcs
+\only<4->{
+\TSetTick{ab}{0}{00}
+\TSetTick{ab}{1}{01}
+\TSetTick{ab}{2}{10}
+\TSetTick{ab}{3}{11}
+\TSort{(3,0.5)}{ab}{4}{l}
+}
+
+% Arcs de màj noirs de la sc
+\only<5>{
+\THit{a_1}{thick}{ab_0}{.west}{ab_2}
+\THit{a_1}{thick}{ab_1}{.west}{ab_3}
+\path[bounce,thick,bend left] \TBounce{ab_0}{thick}{ab_2}{.south} \TBounce{ab_1}{thick}{ab_3}{.south} ;
+}
+
+\only<6>{
+\THit{a_0}{thick}{ab_2}{.west}{ab_0}
+\THit{a_0}{thick}{ab_3}{.west}{ab_1}
+\path[bounce,thick,bend right] \TBounce{ab_2}{thick}{ab_0}{.north} \TBounce{ab_3}{thick}{ab_1}{.north} ;
+}
+
+\only<7>{
+\THit{b_0}{thick}{ab_3}{.west}{ab_2}
+\THit{b_0}{thick}{ab_1}{.west}{ab_0}
+\THit{b_1}{thick}{ab_0}{.west}{ab_1}
+\THit{b_1}{thick}{ab_2}{.west}{ab_3}
+\path[bounce,thick,bend right] \TBounce{ab_1}{thick}{ab_0}{.north} \TBounce{ab_3}{thick}{ab_2}{.north} ;
+\path[bounce,thick,bend left] \TBounce{ab_0}{thick}{ab_1}{.south} \TBounce{ab_2}{thick}{ab_3}{.south} ;
+}
+
+% État d'exemple pour màj de la sc
+\TState{8-9}{a_1,b_0}
+\TState{10}{a_1,b_0,ab_0,ab_1,ab_2,ab_3}
+\TState{11}{a_1,b_0,ab_2}
+\only<9-11>{
+\THit{a_1}{}{ab_0}{.west}{ab_2}
+\THit{a_1}{}{ab_1}{.west}{ab_3}
+\THit{b_0}{}{ab_3}{.west}{ab_2}
+\THit{b_0}{}{ab_1}{.west}{ab_0}
+\path[bounce,bend left] \TBounce{ab_0}{}{ab_2}{.south} \TBounce{ab_1}{}{ab_3}{.south} ;
+\path[bounce,bend right] \TBounce{ab_1}{}{ab_0}{.north} \TBounce{ab_3}{}{ab_2}{.north} ;
+}
+
+% État d'exemple pour action de la sc
+\TState{12}{a_1,b_0,z_1,ab_2}
+\TState{13-14}{a_1,b_0,z_2,ab_2}
+
+% Arc sortant de la sc
+\only<12-14>{
+\THit{ab_2}{thick}{z_1}{.west}{z_2}
+\path[bounce,bend left,thick] \TBounce{z_1}{thick}{z_2}{.south} ;
+}
+
+% Arc sortant de la sc
+\only<15->{
+\THit{ab_2}{}{z_1}{.west}{z_2}
+\path[bounce,bend left] \TBounce{z_1}{}{z_2}{.south} ;
+}
+
+}
+
+
+
+%%% Exemple pour l'inférence %%%
+\def \exphinf {
+% Sortes
+\TSort{(0,3)}{a}{2}{l}
+\TSort{(0,0)}{b}{2}{l}
+\TSort{(6,0)}{z}{3}{r}
+
+% Sorte coopérative et arcs
+\TSetTick{ab}{0}{00}
+\TSetTick{ab}{1}{01}
+\TSetTick{ab}{2}{10}
+\TSetTick{ab}{3}{11}
+\TSort{(3,0)}{ab}{4}{l}
+
+% Actions de màj grisées
+\THit{a_1}{ulhit}{ab_0}{.west}{ab_2}
+\THit{a_1}{ulhit}{ab_1}{.west}{ab_3}
+\path[bounce,bend left,pulhit] \TBounce{ab_0}{bulhit}{ab_2}{.south} \TBounce{ab_1}{bulhit}{ab_3}{.south};
+
+\THit{a_0}{ulhit}{ab_2}{.west}{ab_0}
+\THit{a_0}{ulhit}{ab_3}{.west}{ab_1}
+\path[bounce,bend right,pulhit] \TBounce{ab_2}{bulhit}{ab_0}{.north} \TBounce{ab_3}{bulhit}{ab_1}{.north};
+
+\THit{b_0}{ulhit}{ab_3}{.west}{ab_2}
+\THit{b_0}{ulhit}{ab_1}{.west}{ab_0}
+\THit{b_1}{ulhit}{ab_0}{.west}{ab_1}
+\THit{b_1}{ulhit}{ab_2}{.west}{ab_3}
+\path[bounce,bend right,pulhit] \TBounce{ab_1}{bulhit}{ab_0}{.north} \TBounce{ab_3}{bulhit}{ab_2}{.north};
+\path[bounce,bend left,pulhit] \TBounce{ab_0}{bulhit}{ab_1}{.south} \TBounce{ab_2}{bulhit}{ab_3}{.south};
+
+% Arcs sortant de la sc
+\THit{ab_2}{ulhit}{z_1}{.north west}{z_2}
+\THit{ab_2}{ulhit}{z_0}{.west}{z_1}
+\path[bounce,bend left,pulhit] \TBounce{z_1}{bulhit}{z_2}{.south} \TBounce{z_0}{bulhit}{z_1}{.south};
+
+\THit{ab_3}{ulhit}{z_2}{.west}{z_1}
+\THit{ab_3}{ulhit}{z_0}{.west}{z_1}
+\THit{ab_1}{ulhit}{z_2}{.west}{z_1}
+\THit{ab_1}{ulhit}{z_0}{.west}{z_1}
+\path[bounce,bend left,pulhit] \TBounce{z_2}{bulhit,bend right}{z_1}{.north};
+
+\THit{ab_0}{ulhit}{z_2}{.west}{z_1}
+\THit{ab_0}{ulhit}{z_1}{.south west}{z_0}
+\path[bounce,bend right,pulhit] \TBounce{z_2}{bulhit}{z_1}{.north} \TBounce{z_1}{bulhit}{z_0}{.north};
+
+}
+
+
+
+%%% Exemple pour l'inférence (sans arcs grisés) %%%
+\def \exphinfblack {
+% Sortes
+\TSort{(0,3)}{a}{2}{l}
+\TSort{(0,0)}{b}{2}{l}
+\TSort{(6,0)}{z}{3}{r}
+
+% Sorte coopérative et arcs
+\TSetTick{ab}{0}{00}
+\TSetTick{ab}{1}{01}
+\TSetTick{ab}{2}{10}
+\TSetTick{ab}{3}{11}
+\TSort{(3,0)}{ab}{4}{l}
+
+% Actions de màj grisées
+\THit{a_1}{}{ab_0}{.west}{ab_2}
+\THit{a_1}{}{ab_1}{.west}{ab_3}
+\path[bounce,bend left] \TBounce{ab_0}{}{ab_2}{.south} \TBounce{ab_1}{}{ab_3}{.south};
+
+\THit{a_0}{}{ab_2}{.west}{ab_0}
+\THit{a_0}{}{ab_3}{.west}{ab_1}
+\path[bounce,bend right] \TBounce{ab_2}{}{ab_0}{.north} \TBounce{ab_3}{}{ab_1}{.north};
+
+\THit{b_0}{}{ab_3}{.west}{ab_2}
+\THit{b_0}{}{ab_1}{.west}{ab_0}
+\THit{b_1}{}{ab_0}{.west}{ab_1}
+\THit{b_1}{}{ab_2}{.west}{ab_3}
+\path[bounce,bend right] \TBounce{ab_1}{}{ab_0}{.north} \TBounce{ab_3}{}{ab_2}{.north};
+\path[bounce,bend left] \TBounce{ab_0}{}{ab_1}{.south} \TBounce{ab_2}{}{ab_3}{.south};
+
+% Arcs sortant de la sc
+\THit{ab_2}{}{z_1}{.north west}{z_2}
+\THit{ab_2}{}{z_0}{.west}{z_1}
+\path[bounce,bend left] \TBounce{z_1}{}{z_2}{.south} \TBounce{z_0}{}{z_1}{.south};
+
+\THit{ab_3}{}{z_2}{.west}{z_1}
+\THit{ab_3}{}{z_0}{.west}{z_1}
+\THit{ab_1}{}{z_2}{.west}{z_1}
+\THit{ab_1}{}{z_0}{.west}{z_1}
+\path[bounce,bend left] \TBounce{z_2}{,bend right}{z_1}{.north};
+
+\THit{ab_0}{}{z_2}{.west}{z_1}
+\THit{ab_0}{}{z_1}{.south west}{z_0}
+\path[bounce,bend right] \TBounce{z_2}{}{z_1}{.north} \TBounce{z_1}{}{z_0}{.north};
+
+}
+
+
+
+%%% Exemple 2 pour l'inférence (projections) %%%
+\def \exphinfproj {
+% Sortes
+\TSort{(0,3)}{a}{2}{l}
+\TSort{(0,0)}{b}{2}{l}
+\TSort{(6,1)}{z}{2}{r}
+
+% Sorte coopérative et arcs
+\TSetTick{ab}{0}{00}
+\TSetTick{ab}{1}{01}
+\TSetTick{ab}{2}{10}
+\TSetTick{ab}{3}{11}
+\TSort{(3,0)}{ab}{4}{l}
+
+% Actions de màj grisées
+\THit{a_1}{ulhit}{ab_0}{.west}{ab_2}
+\THit{a_1}{ulhit}{ab_1}{.west}{ab_3}
+\path[bounce,bend left,pulhit] \TBounce{ab_0}{bulhit}{ab_2}{.south} \TBounce{ab_1}{bulhit}{ab_3}{.south} ;
+
+\THit{a_0}{ulhit}{ab_2}{.west}{ab_0}
+\THit{a_0}{ulhit}{ab_3}{.west}{ab_1}
+\path[bounce,bend right,pulhit] \TBounce{ab_2}{bulhit}{ab_0}{.north} \TBounce{ab_3}{bulhit}{ab_1}{.north} ;
+
+\THit{b_0}{ulhit}{ab_3}{.west}{ab_2}
+\THit{b_0}{ulhit}{ab_1}{.west}{ab_0}
+\THit{b_1}{ulhit}{ab_0}{.west}{ab_1}
+\THit{b_1}{ulhit}{ab_2}{.west}{ab_3}
+\path[bounce,bend right,pulhit] \TBounce{ab_1}{bulhit}{ab_0}{.north} \TBounce{ab_3}{bulhit}{ab_2}{.north} ;
+\path[bounce,bend left,pulhit] \TBounce{ab_0}{bulhit}{ab_1}{.south} \TBounce{ab_2}{bulhit}{ab_3}{.south} ;
+
+% Arcs sortant de la sc
+\THit{ab_3}{ulhit}{z_0}{.west}{z_1}
+\path[bounce,bend left,pulhit] \TBounce{z_0}{bulhit}{z_1}{.south} ;
+
+\THit{ab_0}{ulhit}{z_1}{.west}{z_0}
+\path[bounce,bend right,pulhit]\TBounce{z_1}{bulhit}{z_0}{.north} ;
+}
+
+
+
+%%% Exemple sans sorte coopérative pour l'inférence %%%
+\def \exphinfprojssc {
+% Sortes
+\TSort{(0,3)}{a}{2}{l}
+\TSort{(0,0)}{b}{2}{l}
+\TSort{(6,0)}{z}{3}{r}
+
+\THit{a_1}{ulhit}{z_0}{.west}{z_1}
+\THit{a_1}{ulhit}{z_1}{.north west}{z_2}
+\THit{a_0}{ulhit}{z_1}{.south west}{z_0}
+\THit{a_0}{ulhit}{z_2}{.west}{z_1}
+\path[bounce,bend left,pulhit] \TBounce{z_0}{bulhit}{z_1}{.south} \TBounce{z_1}{bulhit}{z_2}{.south}
+  \TBounce{z_1}{bulhit,bend right}{z_0}{.north} \TBounce{z_2}{bulhit,bend right}{z_1}{.north} ;
+
+\THit{b_0}{ulhit}{z_0}{.west}{z_1}
+\THit{b_0}{ulhit}{z_1}{.north west}{z_2}
+\THit{b_1}{ulhit}{z_1}{.south west}{z_0}
+\THit{b_1}{ulhit}{z_2}{.west}{z_1}
+%\path[bounce,bend left,pulhit] \TBounce{z_0}{bulhit}{z_1}{.south} \TBounce{z_1}{bulhit}{z_2}{.south}
+%  \TBounce{z_1}{bulhit,bend right}{z_0}{.north} \TBounce{z_2}{bulhit,bend right}{z_1}{.north} ;
+}

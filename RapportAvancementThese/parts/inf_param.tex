@@ -1,0 +1,253 @@
+% Inférence de la Paramétrisation
+
+\begin{frame}
+  \frametitle{Inferring Parameters}
+  \framesubtitle{\tcite{PMR10-TCSB}}
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+
+\begin{center}
+\scalebox{\scaleinf}{
+\begin{tikzpicture}
+\path[use as bounding box] (-0.5,-0.8) rectangle (6.5,2.8);
+\exphinf
+
+% Processus mis en valeur
+\only<2->{
+  \node[current process,fill=colorinf] (hb_1) at (b_1.center) {};
+  \node[current process,fill=colorinf] (ha_1) at (a_1.center) {};}
+\only<2->{
+  \node[current process,fill=colorinf] (hab_3) at (ab_3.center) {};}
+\only<4->{
+  \node[current process,fill=colorinf] (hz_1) at (z_1.center) {};}
+
+% Actions mises en valeur
+\only<3->{
+  \THit{ab_3}{}{z_2}{.west}{z_1}
+  \THit{ab_3}{}{z_0}{.west}{z_1}
+  \path[bounce,bend left] \TBounce{z_2}{bend right}{z_1}{.north} \TBounce{z_0}{}{z_1}{.south};}
+\end{tikzpicture}
+}
+\end{center}
+
+\end{column}
+\begin{column}{0.2\textwidth}
+
+\begin{center}
+\begin{tikzpicture}[grn]
+\path[use as bounding box] (0.5,-0.5) rectangle (2,1.5);
+% Gènes noirs
+  \node[inner sep=0] (a) at (0,1.5) {a};
+  \node[inner sep=0] (b) at (0,0) {b};
+  \node[inner sep=0] (z) at (2,0.75) {z};
+% Arcs colorés
+  \path (a) edge[act] node[elabel,above=-2pt] {$1+$} (z) ;
+  \path (b) edge[inh] node[elabel,below=-2pt] {$1-$} (z) ;
+\end{tikzpicture}
+\end{center}
+
+\end{column}
+\begin{column}{0.25\textwidth}
+
+\begin{tabular}{c|c}
+  $\omega$ & $k_{z, \omega}$ \\
+\hline
+  \only<2->{\color{colorgray}}$\emptyset$ & \\
+  \only<2->{\color{colorgray}}$\{b\}$ & \\
+  \only<2->{\color{colorgray}}$\{a\}$ & \\
+  $\{a;b\}$ & \uncover<5->{\textcolor{exanswer}{$[1;1]$}}
+\end{tabular}
+
+\end{column}
+\end{columns}
+
+\bigskip
+\tval{Inputs:} The Process Hitting model and the related Interaction Graph
+
+\tval{Output:} The Parametrization related to the Interaction Graph
+
+\medskip
+%Similar approach than Interaction Graph Inference (\tval{focal processes})
+
+\pause[2]
+\begin{itemize}
+  \item For each gene [\ex{$z$}] and each \tval{configuration} of resources [\ex{$\omega = \{a ; b\}$}]
+\pause[3]
+  \item Find the set of \tval{focal processes} of the gene\pause[4] [\ex{$\{z_1\}$}]
+\pause[5]
+  \item Under some \only<6->{\underline}{conditions}, this set is the parameter: $\ex{k_{z,\{a,b\}} = [1;1]}$
+\end{itemize}
+
+\pause[6]
+Problematic cases:
+\begin{itemize}
+  \item[\f] Behavior cannot be represented as a BRN
+  \item[\f] Lack of cooperation (no focal processes)
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Enumerating admissible Parametrizations}
+  \framesubtitle{~}
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+
+\begin{center}
+\scalebox{\scaleinf}{
+\begin{tikzpicture}
+\path[use as bounding box] (-0.5,-0.8) rectangle (6.5,2.8);
+\exphinfprojssc
+
+% Processus mis en valeur
+\only<2->{
+  \node[current process,fill=colorinf] (hb_1) at (b_1.center) {};
+  \node[current process,fill=colorinf] (ha_1) at (a_1.center) {};}
+
+% Actions mises en valeur
+\only<2->{
+  \THit{a_1}{}{z_0}{.west}{z_1}
+  \THit{a_1}{}{z_1}{.north west}{z_2}
+  \THit{b_1}{}{z_1}{.south west}{z_0}
+  \THit{b_1}{}{z_2}{.west}{z_1}
+  \path[bounce,bend left] \TBounce{z_0}{}{z_1}{.south} \TBounce{z_1}{}{z_2}{.south}
+    \TBounce{z_1}{bend right}{z_0}{.north} \TBounce{z_2}{bend right}{z_1}{.north} ;}
+
+\end{tikzpicture}
+}
+\end{center}
+
+\end{column}
+\begin{column}{0.2\textwidth}
+
+\begin{center}
+\begin{tikzpicture}[grn]
+\path[use as bounding box] (0.5,-0.5) rectangle (2,1.5);
+% Gènes noirs
+  \node[inner sep=0] (a) at (0,1.5) {a};
+  \node[inner sep=0] (b) at (0,0) {b};
+  \node[inner sep=0] (z) at (2,0.75) {z};
+% Arcs colorés
+  \path (a) edge[act] node[elabel,above=-2pt] {$1+$} (z) ;
+  \path (b) edge[inh] node[elabel,below=-2pt] {$1-$} (z) ;
+\end{tikzpicture}
+\end{center}
+
+\end{column}
+\begin{column}{0.25\textwidth}
+
+\begin{tabular}{c|c}
+  $\omega$ & $k_{z, \omega}$ \\
+\hline
+  $\emptyset$ & \textcolor{lightgray}{\textit{?}} \\
+  $\{b\}$ & $[0;0]$ \\
+  $\{a\}$ & $[2;2]$ \\
+  \only<1>{$\{a;b\}$}\only<2->{\ex{$\{a;b\}$}} & \textcolor{lightgray}{\textit{?}}
+\end{tabular}
+
+\end{column}
+\end{columns}
+
+\bigskip
+\tval{Inputs:} The Process Hitting, the related Interaction Graph\\
+\quad \quad and the partially inferred Parametrization
+
+\tval{Output:} All admissible Parametrizations observing the dynamics
+
+\smallskip
+\pause[2]
+\begin{itemize}
+  \item Incomplete cooperations may lead to a partial Parametrization [\ex{$\omega = \{a, b\}$}]
+\pause[3]
+  \item Ambiguous cases may represent several dynamics\\\hfill[\ex{$k_{z, \{a, b\}} = [0;0]?\ [0;1]?\ [1;1]?\ [1;2]?\ [2;2]?\ [0;2]?$}]
+\end{itemize}
+
+\pause[4]
+\f Enumeration regarding:
+\begin{itemize}
+  \item[$-$] Biological constraints
+  \item[$-$] The dynamics of the Process Hitting
+\end{itemize}
+\end{frame}
+
+
+
+\begin{comment}
+\begin{frame}[c]
+  \frametitle{Abducing Parametrizations}
+  \framesubtitle{Implementation}
+
+Parameters definitions:
+
+\quad One identifier for each parameter: \ex{$param\_label(a, i)$}
+
+\bigskip
+
+Useful rules:
+
+\quad $\ex{less\_active(X, P, Q) \leftarrow~} K_{X,P}\text{ has less activators than }K_{X,Q}$
+
+\quad $\ex{param\_inf(X, P, Q) \leftarrow~} K_{X,P} \preccurlyeq K_{X,Q}$
+
+\pause
+\bigskip
+Parameters enumeration uses cardinalities:
+
+\quad \ex{$1~\{~param(X, P, I) : component\_levels(X, I)~\} \leftarrow param\_label(X, P).$}
+
+\console{[$X$: component; $P$: parameter label; $I$: parameter value]}
+
+\pause
+\bigskip
+Parametrizations filtering uses constraints:
+
+\quad \ex{$\leftarrow less\_active(X, P, Q), \neg param\_inf(X, P, Q).$}
+
+\console{[$X$: component; $P$, $Q$: parameter labels]}
+
+\end{frame}
+\end{comment}
+
+
+
+\begin{frame}[c]
+  \frametitle{Parametrization Inference}
+  \framesubtitle{Results}
+
+Two steps:
+\begin{itemize}
+  \item Parameters inference (partial)
+  \item Admissible Parametrizations enumeration (total)
+\end{itemize}
+
+
+\medskip
+
+\pause
+
+\tval{Results}:
+\begin{itemize}
+  \item Very fast execution for parameters inference
+  \begin{itemize}
+    \item[] \tval{$<$ 1s} for the 20 \& 40 genes models \quad\tval{\ex{[EGFR20 \& TCRSIG40]}}
+%\f all 191 \& 141 parameters
+    \item[] \tval{$\simeq$ 1min 30s} for the 104 genes models \quad\tval{\ex{[EGFR104]}}
+%    \item[] \quad\quad (solving only) \f found $2.10^6 / 4.10^6$ parameters
+  \end{itemize}
+  \item Admissible Parametrizations enumeration
+  \begin{itemize}
+    \item[] After one cooperation removal:
+    \item[] \quad $\simeq$ \tval{4s} to find 42 admissible Parametrizations \quad\tval{\ex{[TCRSIG40]}}
+    \item[] \quad $\simeq$ \tval{20s} to find 129 admissible Parametrizations \quad\tval{\ex{[EGFR20]}}
+  \end{itemize}
+\end{itemize}
+
+\medskip
+ASP is convenient to handle enumeration (\tval{cardinalities})
+
+and filter only admissible answers (\tval{constraints})
+
+\end{frame}

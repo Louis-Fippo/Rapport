@@ -1,0 +1,23 @@
+% Diapo d'intro
+
+\begin{frame}[c]
+  \frametitle{Context and Aims}
+
+Algebraic modeling to study complex dynamical biological systems:
+
+%\bigskip
+\begin{center}
+  \includegraphics[scale=1.2, height=3.5cm]{figs/testsimulation1.png}
+\end{center}
+
+
+
+\pause
+\begin{itemize}
+  \item Historical model: Biological Regulatory Network (René Thomas)
+  \item New developed model: Process Hitting
+\end{itemize}
+
+\textcolor{couleurtheme}{$\Rightarrow$} \fbox{\tval{\large Allow efficient translation from Process Hitting to BRN}} \textcolor{couleurtheme}{$\Leftarrow$}
+
+\end{frame}

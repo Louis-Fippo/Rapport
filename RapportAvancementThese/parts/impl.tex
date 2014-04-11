@@ -1,0 +1,27 @@
+% Pistes d'implémentation
+
+\begin{frame}[c]
+  \frametitle{ASP Implementation}
+
+\tval{ASP}: Declarative programming
+
+\quad Rule: \ex{$head \leftarrow \only<1>{body}\only<2->{A_1, ..., A_n, \neg A_{n+1}, ..., \neg A_m}.$}
+
+\quad Fact: \ex{$head.$}
+
+\quad Constraint: \ex{$\leftarrow body.$}
+
+\quad Aggregate: \ex{$lower~\{~atoms~\}~upper \leftarrow body.$}
+
+\pause[3]
+\bigskip
+Representation of PH / BRNs:
+
+\quad Gene: \ex{$component(a, n).$}
+
+\quad Action: \ex{$action(a, i, b, j, k).$}
+
+\quad Cooperation: \ex{$cooperation(c, a, i, j).$}
+
+\quad Useful rules: \ex{$component\_levels(X, 0..M) \leftarrow component(X, M).$}
+\end{frame}
