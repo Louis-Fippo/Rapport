@@ -1,0 +1,52 @@
+**********************Brouillon de mes rapports à rédiger**********************************
+
+1-Première Réunion
+
+Petite dscution sur le sujet de thèse. 
+-Nous avons situé le travail à faire dans un contexte scientifique
+-Nous avons discuté des éventuelles approches;
+-Nous l'avons structurer en deux grandes parties(une partie méthodologique et une partie Application) 
+-Nous avons évoqué l'utilité de partir du travail d'Andrea.
+
+2-Réunion du Lundi 14 octobre 2013 à 14h(l'heure est bizare compte tenu de la coincidence avec la réunion d'équipe)
+
+Nous avons discuter de la transformation des motifs de PID(pathway Interaction Data base) en motifs du Process Hitting
+-l'idée serait qu'il m'anque d'approche formelle de traitement des réseaux de PID. C'est pourquoi il faut les traduire en Process Hitting
+-Une autre idée est d'enrichir le Process Hitting
+-Comment mettre en oeuvre le passage de PID vers PH: énumérer les différents types de motifs qu'on retrouve sur PID, se focaliser sur les réseaux de signalisition, compléter le travail d'Andrea.
+
+3-Réunion du 18/10/2013
+
+-regarder les revues,
+-il existe une transition des réactions biochimiques vers le Process Hitting
+-refaire les simulations d'Andrea
+
+4-Réunion le 12 novembre 2013
+
+Discution sur les choix des rates.(Données, modèles)
+
+4-1- voir Carito le 14 novembre à 14h
+
+
+5-Réunion le lundi 18 novembre à 16h(après la réunion d'équipe)
+
+-Augmenter les processus par sortes
+-construire un jeux de simulation(partir du plus naïf au plus raffiner
+-faire varier 
+-Bien regarder les prédécesseurs 
+
+-Bien documenter
+-faire le choix des seuils de façon générique
+(*******************TO DO****************************)
+-Monter les scénarios de simulation
+-Automatiser le processus de simulation
+-Automatiser l'impression des résultats
+
+6-Réunion suivante : mercredi 4 décembre 10h. 
+
+7-Réunion du jeudi 19 décembre 2013 à 10h
+
+
+
+
+ 
