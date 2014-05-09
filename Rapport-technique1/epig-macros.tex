@@ -1,0 +1,300 @@
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage{helvet}
+%package pour les algo
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{comment}
+
+\pagestyle{empty}
+\newcommand{\smallitem}{\vspace*{-2mm}\item}
+\renewcommand{\baselinestretch}{0.95}
+\marginparwidth 0pt 
+\evensidemargin 2.2cm 
+\oddsidemargin 1.8cm 
+\topmargin 0cm 
+\textwidth 12cm 
+\textheight 19cm
+
+\makeatletter
+\renewcommand{\fnum@figure}{\textbf{\fontsize{10}{10}\selectfont\sffamily\figurename~\thefigure}}
+\renewcommand{\fnum@table}{\textbf{\fontsize{10}{10}\selectfont\sffamily\tablename~\thetable}}
+\makeatother
+
+
+\newcommand{\auteur}[1]{
+	\begin{center}
+	{#1}
+	\end{center}
+}
+
+\newcommand{\titre}[1]{
+	\begin{center}
+	{\large\bfseries \sffamily {#1}}
+	\end{center}
+}
+
+\newcommand{\affiliation}[1]{
+	\noindent
+	{\small{#1}}
+}
+
+
+\usepackage{hyperref}
+\usepackage{amsmath}  % Maths
+\usepackage{amsfonts} % Maths
+\usepackage{amssymb}  % Maths
+\usepackage{stmaryrd} % Maths (crochets doubles)
+
+\usepackage{url}     % Mise en forme + liens pour URLs
+\usepackage{array}   % Tableaux évolués
+
+\usepackage{prettyref}
+\newrefformat{def}{Def.~\ref{#1}}
+\newrefformat{fig}{Fig.~\ref{#1}}
+\newrefformat{pro}{Property~\ref{#1}}
+\newrefformat{pps}{Proposition~\ref{#1}}
+\newrefformat{lem}{Lemma~\ref{#1}}
+\newrefformat{thm}{Theorem~\ref{#1}}
+\newrefformat{sec}{Sect.~\ref{#1}}
+\newrefformat{ssec}{Subsect.~\ref{#1}}
+\newrefformat{suppl}{Appendix~\ref{#1}}
+\newrefformat{eq}{Eq.~\eqref{#1}}
+\def\pref{\prettyref}
+
+\usepackage{ntheorem}
+\theoremheaderfont{\fontsize{10}{10}\sffamily\bfseries}
+%\newtheorem*{example}{Example}{\itshape}{}
+\newtheorem{example}{Example}{\itshape}{}
+\newtheorem{definition}{Definition}{\itshape}{}
+
+\usepackage{tikz}
+\newdimen\pgfex
+\newdimen\pgfem
+\usetikzlibrary{arrows,shapes}
+%\usetikzlibrary{shadows,scopes}
+%\usetikzlibrary{positioning}
+%\usetikzlibrary{matrix}
+%\usetikzlibrary{decorations.text}
+%\usetikzlibrary{decorations.pathmorphing}
+
+
+
+%\input{macros/macros}
+
+% Macros générales
+\def\Pint{\textsc{PINT}}
+
+% Notations générales pour PH
+\newcommand{\PH}{\mathcal{PH}}
+\newcommand{\PHs}{\Sigma}
+\newcommand{\PHl}{L}
+\newcommand{\PHp}{\textcolor{red}{\mathcal{P}}}
+\newcommand{\PHproc}{\mathcal{P}}
+\newcommand{\PHa}{\PHh}
+\newcommand{\PHh}{\mathcal{H}}
+\newcommand{\PHn}{\mathcal{N}}
+
+\newcommand{\PHhitter}{\mathsf{hitter}}
+\newcommand{\PHtarget}{\mathsf{target}}
+\newcommand{\PHbounce}{\mathsf{bounce}}
+\newcommand{\PHsort}{\Sigma}
+
+\def\f#1{\mathsf{#1}}
+\def\focals{\f{focals}}
+\def\play{\cdot}
+\def\configs#1{\mathbb C_{#1\rightarrow a}}
+
+\newcommand{\PHfrappeA}{\rightarrow}
+\newcommand{\PHfrappeB}{\Rsh}
+\newcommand{\PHfrappe}[3]{#1\PHfrappeA#2\PHfrappeB#3}
+\newcommand{\PHfrappebond}[2]{#1\PHfrappeB#2}
+\newcommand{\PHobjectif}[2]{\mbox{$#1\PHfrappeB^*\!#2$}}
+\newcommand{\PHconcat}{::}
+\newcommand{\PHneutralise}{\rtimes}
+
+\def\PHget#1#2{{#1[#2]}}
+\newcommand{\PHchange}[2]{(#1 \Lleftarrow #2)}
+\newcommand{\PHarcn}[2]{\mbox{$#1\PHneutralise#2$}}
+\newcommand{\PHjoue}{\cdot}
+
+\newcommand{\PHetat}[1]{\mbox{$\langle #1 \rangle$}}
+
+% Notations spécifiques à ce papier
+\newcommand{\PHdirectpredec}[1]{\PHs^{-1}(#1)}
+\newcommand{\PHpredec}[1]{\f{pred}(#1)}
+\newcommand{\PHpredecgene}[1]{\f{reg}({#1})}
+\newcommand{\PHpredeccs}[1]{\PHpredec{#1} \setminus \Gamma}
+
+\newcommand{\PHincl}[2]{#1 :: #2}
+
+\def\ctx{\varsigma}
+\def\ctxOverride{\Cap}
+\def\PHstate#1{\langle #1 \rangle}
+
+\def\DEF{\stackrel{\Delta}=}
+\def\EQDEF{\stackrel{\Delta}\Leftrightarrow}
+
+\def\intervalless{<_{[]}}
+
+%\input{macros/macros-ph}
+
+% Notations pour le modèle de Thomas (depuis thèse)
+\newcommand{\GRN}{\mathcal{GRN}}
+\newcommand{\IG}{\mathcal{G}}
+\newcommand{\GRNreg}[1]{\Gamma^{-1}(#1)}
+\newcommand{\GRNres}[2]{\mathsf{Res}_{#1}(#2)}
+\newcommand{\GRNallres}[1]{\mathsf{Res}_{#1}}
+\newcommand{\GRNget}[2]{\PHget{#1}{#2}}
+\newcommand{\GRNetat}[1]{\PHetat{#1}}
+
+\def\levels{\mathsf{levels}}
+\def\levelsA#1#2{\levels_+(#1\rightarrow #2)}
+\def\levelsI#1#2{\levels_-(#1\rightarrow #2)}
+
+\newcommand{\Kinconnu}{\emptyset}
+\newcommand{\RRGva}[3]{#1 \stackrel{#2}{\longrightarrow} #3}
+\newcommand{\RRGgi}{\mathcal{G}}
+\newcommand{\RRGreg}[1]{\RRGgi_{#1}}
+
+\tikzstyle{grn}=[every node/.style={circle,draw=black,outer sep=2pt,minimum
+                size=15pt,text=black}, node distance=1.5cm]
+\tikzstyle{act}=[->,draw=black,thick,color=black]
+\tikzstyle{inh}=[>=|,-|,draw=black,thick, text=black,label]
+\tikzstyle{inf}=[->,draw=colorinf,thick,color=colorinf]
+\tikzstyle{elabel}=[fill=none,text=black, above=-2pt,%sloped,
+minimum size=10pt, outer sep=0, font=\scriptsize, draw=none]
+\tikzstyle{sg}=[every node/.style={outer sep=2pt,minimum
+                size=15pt,text=black}, node distance=2cm]
+
+%\input{macros/macros-grn}
+
+\usepackage{ifthen}
+%\usepackage{tikz}
+%\usetikzlibrary{arrows,shapes}
+
+\definecolor{lightgray}{rgb}{0.8,0.8,0.8}
+\definecolor{lightgrey}{rgb}{0.8,0.8,0.8}
+
+\tikzstyle{boxed ph}=[]
+\tikzstyle{sort}=[fill=lightgray,rounded corners]
+\tikzstyle{process}=[circle,draw,minimum size=15pt,fill=white,
+font=\footnotesize,inner sep=1pt]
+\tikzstyle{black process}=[process, fill=black,text=white, font=\bfseries]
+\tikzstyle{gray process}=[process, draw=black, fill=lightgray]
+\tikzstyle{current process}=[process, draw=black, fill=lightgray]
+\tikzstyle{process box}=[white,draw=black,rounded corners]
+\tikzstyle{tick label}=[font=\footnotesize]
+\tikzstyle{tick}=[black,-]%,densely dotted]
+\tikzstyle{hit}=[->,>=angle 45]
+\tikzstyle{selfhit}=[min distance=30pt,curve to]
+\tikzstyle{bounce}=[densely dotted,->,>=latex]
+\tikzstyle{hl}=[font=\bfseries,very thick]
+\tikzstyle{hl2}=[hl]
+\tikzstyle{nohl}=[font=\normalfont,thin]
+
+\newcommand{\currentScope}{}
+\newcommand{\currentSort}{}
+\newcommand{\currentSortLabel}{}
+\newcommand{\currentAlign}{}
+\newcommand{\currentSize}{}
+
+\newcounter{la}
+\newcommand{\TSetSortLabel}[2]{
+  \expandafter\repcommand\expandafter{\csname TUserSort@#1\endcsname}{#2}
+}
+\newcommand{\TSort}[4]{
+  \renewcommand{\currentScope}{#1}
+  \renewcommand{\currentSort}{#2}
+  \renewcommand{\currentSize}{#3}
+  \renewcommand{\currentAlign}{#4}
+  \ifcsname TUserSort@\currentSort\endcsname
+    \renewcommand{\currentSortLabel}{\csname TUserSort@\currentSort\endcsname}
+  \else
+    \renewcommand{\currentSortLabel}{\currentSort}
+  \fi
+  \begin{scope}[shift={\currentScope}]
+  \ifthenelse{\equal{\currentAlign}{l}}{
+    \filldraw[process box] (-0.5,-0.5) rectangle (0.5,\currentSize-0.5);
+    \node[sort] at (-0.2,\currentSize-0.4) {\currentSortLabel};
+   }{\ifthenelse{\equal{\currentAlign}{r}}{
+     \filldraw[process box] (-0.5,-0.5) rectangle (0.5,\currentSize-0.5);
+     \node[sort] at (0.2,\currentSize-0.4) {\currentSortLabel};
+   }{
+    \filldraw[process box] (-0.5,-0.5) rectangle (\currentSize-0.5,0.5);
+    \ifthenelse{\equal{\currentAlign}{t}}{
+      \node[sort,anchor=east] at (-0.3,0.2) {\currentSortLabel};
+    }{
+      \node[sort] at (-0.6,-0.2) {\currentSortLabel};
+    }
+   }}
+  \setcounter{la}{\currentSize}
+  \addtocounter{la}{-1}
+  \foreach \i in {0,...,\value{la}} {
+    \TProc{\i}
+  }
+  \end{scope}
+}
+
+\newcommand{\TTickProc}[2]{ % pos, label
+  \ifthenelse{\equal{\currentAlign}{l}}{
+    \draw[tick] (-0.6,#1) -- (-0.4,#1);
+    \node[tick label, anchor=east] at (-0.55,#1) {#2};
+   }{\ifthenelse{\equal{\currentAlign}{r}}{
+    \draw[tick] (0.6,#1) -- (0.4,#1);
+    \node[tick label, anchor=west] at (0.55,#1) {#2};
+   }{
+    \ifthenelse{\equal{\currentAlign}{t}}{
+      \draw[tick] (#1,0.6) -- (#1,0.4);
+      \node[tick label, anchor=south] at (#1,0.55) {#2};
+    }{
+      \draw[tick] (#1,-0.6) -- (#1,-0.4);
+      \node[tick label, anchor=north] at (#1,-0.55) {#2};
+    }
+   }}
+}
+\newcommand{\TSetTick}[3]{
+  \expandafter\repcommand\expandafter{\csname TUserTick@#1_#2\endcsname}{#3}
+}
+
+\newcommand{\myProc}[3]{
+  \ifcsname TUserTick@\currentSort_#1\endcsname
+    \TTickProc{#1}{\csname TUserTick@\currentSort_#1\endcsname}
+  \else
+    \TTickProc{#1}{#1}
+  \fi
+  \ifthenelse{\equal{\currentAlign}{l}\or\equal{\currentAlign}{r}}{
+    \node[#2] (\currentSort_#1) at (0,#1) {#3};
+  }{
+    \node[#2] (\currentSort_#1) at (#1,0) {#3};
+  }
+}
+\newcommand{\TSetProcStyle}[2]{
+  \expandafter\repcommand\expandafter{\csname TUserProcStyle@#1\endcsname}{#2}
+}
+\newcommand{\TProc}[1]{
+  \ifcsname TUserProcStyle@\currentSort_#1\endcsname
+    \myProc{#1}{\csname TUserProcStyle@\currentSort_#1\endcsname}{}
+  \else
+    \myProc{#1}{process}{}
+  \fi
+}
+
+\newcommand{\repcommand}[2]{
+  \providecommand{#1}{#2}
+  \renewcommand{#1}{#2}
+}
+\newcommand{\THit}[5]{
+  \path[hit] (#1) edge[#2] (#3#4);
+  \expandafter\repcommand\expandafter{\csname TBounce@#3@#5\endcsname}{#4}
+}
+\newcommand{\TBounce}[4]{
+  (#1\csname TBounce@#1@#3\endcsname) edge[#2] (#3#4)
+}
+
+\newcommand{\TState}[1]{
+  \foreach \proc in {#1} {
+    \node[current process] (\proc) at (\proc.center) {};
+  }
+}
+

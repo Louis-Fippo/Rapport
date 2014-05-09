@@ -1,0 +1,68 @@
+\begin{thebibliography}{10}
+
+\bibitem{batt2005validation}
+Gr{\'e}gory Batt, Delphine Ropers, Hidde De~Jong, Johannes Geiselmann, Radu
+  Mateescu, Michel Page, and Dominique Schneider.
+\newblock Validation of qualitative models of genetic regulatory networks by
+  model checking: Analysis of the nutritional stress response in escherichia
+  coli.
+\newblock {\em Bioinformatics}, 21(suppl 1):i19--i28, 2005.
+
+\bibitem{guziolowski2012automatic}
+Carito Guziolowski, Aristotelis Kittas, Florian Dittmann, and Niels Grabe.
+\newblock Automatic generation of causal networks linking growth factor stimuli
+  to functional cell state changes.
+\newblock {\em FEBS Journal}, 279(18):3462--3474, 2012.
+
+\bibitem{guziolowski2013exhaustively}
+Carito Guziolowski, Santiago Videla, Federica Eduati, Sven Thiele, Thomas
+  Cokelaer, Anne Siegel, and Julio Saez-Rodriguez.
+\newblock Exhaustively characterizing feasible logic models of a signaling
+  network using answer set programming.
+\newblock {\em Bioinformatics}, 29(18):2320--2326, 2013.
+
+\bibitem{macnamara2012state}
+Aidan MacNamara, Camille Terfve, David Henriques, Beatriz~Pe{\~n}alver
+  Bernab{\'e}, and Julio Saez-Rodriguez.
+\newblock State--time spectrum of signal transduction logic models.
+\newblock {\em Physical Biology}, 9(4):045003, 2012.
+
+\bibitem{mitsos2009identifying}
+Alexander Mitsos, Ioannis~N Melas, Paraskeuas Siminelakis, Aikaterini~D
+  Chairakaki, Julio Saez-Rodriguez, and Leonidas~G Alexopoulos.
+\newblock Identifying drug effects via pathway alterations using an integer
+  linear programming optimization formulation on phosphoproteomic data.
+\newblock {\em PLoS computational biology}, 5(12):e1000591, 2009.
+
+\bibitem{mobashir2012simulated}
+Mohammad Mobashir, Burkhart Schraven, and Tilo Beyer.
+\newblock Simulated evolution of signal transduction networks.
+\newblock {\em PloS one}, 7(12):e50905, 2012.
+
+\bibitem{PMR10-TCSB}
+{L}o{\"i}c {P}aulev{\'e}, {M}organ {M}agnin, and {O}livier {R}oux.
+\newblock Refining dynamics of gene regulatory networks in a stochastic
+  $\pi$-calculus framework.
+\newblock In {\em Transactions on Computational Systems Biology XIII}, pages
+  171--191. Springer, 2011.
+
+\bibitem{schaefer2009pid}
+Carl~F Schaefer, Kira Anthony, Shiva Krupa, Jeffrey Buchoff, Matthew Day, Timo
+  Hannay, and Kenneth~H Buetow.
+\newblock Pid: the pathway interaction database.
+\newblock {\em Nucleic acids research}, 37(suppl 1):D674--D679, 2009.
+
+\bibitem{tyson2003sniffers}
+John~J Tyson, Katherine~C Chen, and Bela Novak.
+\newblock Sniffers, buzzers, toggles and blinkers: dynamics of regulatory and
+  signaling pathways in the cell.
+\newblock {\em Current opinion in cell biology}, 15(2):221--231, 2003.
+
+\bibitem{yu2012hipathdb}
+Namhee Yu, Jihae Seo, Kyoohyoung Rho, Yeongjun Jang, Jinah Park, Wan~Kyu Kim,
+  and Sanghyuk Lee.
+\newblock hipathdb: a human-integrated pathway database with facile
+  visualization.
+\newblock {\em Nucleic acids research}, 40(D1):D797--D802, 2012.
+
+\end{thebibliography}

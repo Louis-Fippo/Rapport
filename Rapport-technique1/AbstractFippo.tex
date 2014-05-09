@@ -1,0 +1,40 @@
+\documentclass[11pt,a4paper,twoside]{epig}
+\input{epig-macros}
+
+\hyphenpenalty 1000
+
+\newcommand{\FIG}[4]
+{\begin{figure}[!hbt]
+\begin{center}
+\rotatebox{270}{\includegraphics[width=#1]{#2}}
+\caption{\label{fig:#3}#4\vspace{-5mm}}
+\end{center}
+\end{figure}}
+
+
+
+\begin{document}
+
+\titre{Integrating time-series data on large-scale cell-based models: application to skin differentiation}
+\auteur{Louis Fippo Fitime$^1$, Andrea Beica$^1$, Olivier Roux$^1$ and Carito Guziolowski$^{1}$}
+\affiliation{$^1 $
+LUNAM Universit\'e, \'Ecole Centrale de Nantes, IRCCyN UMR CNRS 6597\\
+(Institut de Recherche en Communications et Cybern\'etique de Nantes)\\
+1 rue de la No\"e -- B.P. 92101 -- 44321 Nantes Cedex 3, France.\\
+\texttt{Louis.Fippo-Fitime@irccyn.ec-nantes.fr}}
+\\
+
+\section*{Abstract}
+\vspace{-2mm}
+The way living organisms work and develop themselves is controlled by large and complex 
+networks of genes, proteins, small molecules, and their interactions, so-called biological 
+regulatory networks. Confronting time-series gene expression data with models may allow us to
+examine and characterize the dynamics of elements that compose such a regulatory network. 
+In this work, we propose a way to model and simulate large-scale regulatory networks, by using the 
+Process Hitting (PH) framework, in order to verify if the model describes the experimental measures.
+The preliminary work presented here proposes: (1) a semi-automatic method to build a PH from
+a regulatory network of biochemical reactions, (2) a discretization scheme of the continuous time-series measurements, 
+and (3) an approach to estimate the PH stochastic simulation parameters in an unbiased manner.
+\vspace{-2mm}
+
+\end{document}

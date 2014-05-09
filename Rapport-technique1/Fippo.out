@@ -1,0 +1,13 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}
+\BOOKMARK [1][-]{section.2}{Methods and data}{}
+\BOOKMARK [2][-]{subsection.2.1}{The Process Hitting Framework}{section.2}
+\BOOKMARK [2][-]{subsection.2.2}{Time-series microarray data}{section.2}
+\BOOKMARK [2][-]{subsection.2.3}{Interaction network}{section.2}
+\BOOKMARK [1][-]{section.3}{Results}{}
+\BOOKMARK [2][-]{subsection.3.1}{Modeling the RSTC network as a PH model}{section.3}
+\BOOKMARK [2][-]{subsection.3.2}{Integrating time-series gene expression data}{section.3}
+\BOOKMARK [3][-]{subsubsection.3.2.1}{Discretizing times-series data}{subsection.3.2}
+\BOOKMARK [3][-]{subsubsection.3.2.2}{Estimating the parameters for the PH-simulation}{subsection.3.2}
+\BOOKMARK [2][-]{subsection.3.3}{PH code generation}{section.3}
+\BOOKMARK [1][-]{section.4}{Conclusions}{}
+\BOOKMARK [1][-]{appendix.A}{Annexe}{}

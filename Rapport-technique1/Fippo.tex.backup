@@ -1,0 +1,195 @@
+\documentclass[11pt,a4paper,twoside]{epig}
+\input{epig-macros}
+
+\hyphenpenalty 1000
+
+\newcommand{\FIG}[4]
+{\begin{figure}[!hbt]
+\begin{center}
+\rotatebox{270}{\includegraphics[width=#1]{#2}}
+\caption{\label{fig:#3}#4\vspace{-5mm}}
+\end{center}
+\end{figure}}
+
+
+
+\begin{document}
+
+\titre{Integration des données de séries temporelles à un model formel}
+\auteur{Louis Fippo Fitime$^1$, Andrea Beica$^1$, Olivier Roux$^1$ and Carito Guziolowski$^{1}$}
+\affiliation{$^1 $
+LUNAM Universit\'e, \'Ecole Centrale de Nantes, IRCCyN UMR CNRS 6597\\
+(Institut de Recherche en Communications et Cybern\'etique de Nantes)\\
+1 rue de la No\"e -- B.P. 92101 -- 44321 Nantes Cedex 3, France.\\
+\texttt{Louis.Fippo-Fitime@irccyn.ec-nantes.fr}}
+\\
+
+\section*{Abstract}
+\vspace{-2mm}
+
+L'étude et la compréhension des sytèmes biologiques repose sur notre capacité à construire des abstractions de ces systèmes 
+afin d'en étudier les propriétés. De nombreux formalismes ont été proposé pour atteindre cet objectif.  Ces formalismes n'ont 
+pas tous les mêmes fondements théoriques et les mêmes puissances d'analyse. En général, nous choisirons un formalisme en fonction 
+d'un aspect bien précis du systeme que nous voulons étudier. 
+
+Dans le cadre de notre travail nous avons proposé une étude du processus de différenciation des cellules de la peau grace à une 
+modélisation de son sytème  biologique à l'aide du formalisme des frappes de processus. L'idée de base était de pouvoir intégrer
+dans un modèle hybride les données temporelles de certains composants du réseau receuillis après une expérience réelle.  
+Nous avons donc proposé une démarche méthodologique rigoureuse bsasée sur la description du système biologique et les résultats 
+des expérimentations.
+
+\vspace{-2mm}
+
+
+
+\section{Introduction}
+
+L'objet de ce travail est la modélisation, la simulation et l'analyse des systèmes biologiques en se servant des frappes de processus. 
+
+Le but est de parcourir le travail éffectué dans la première partie des travaux de 
+recherche qui visent à introduire les données de séries temporelles dans les modèles formels d'études 
+des systèmes complexes. Nous nous intéressons ici à l'étude d'un grand(~$200$ noeuds et ~$400$ interactions) réseau biologique. 
+Dans la section suivante, nous allons présenter les données qui nous ont servi de base pour cette modélisation. Nous y présenterons 
+le graphe des interactions qui décrit le réseau biologique et les données de séries temporelles qui ont permi d'estimer les paramètres temporelles. 
+
+\vspace{3mm}
+\noindent
+
+\section{Les données}
+
+Dans cette première section nous présentons les données qui nous ont servi de support pour la modélisation de notre système. 
+
+Nous allons nous focaliser sur deux éléments principaux: le graphe des interaction qui décrit les composants du sytème et 
+les les différentes interactions qui existent entre ces composants, les données d'expressions des gènes. 
+
+
+\subsection{Le graphe des interactions}
+Les graphe d'interactions qui décrit le processus de cicatrisation de la peau est un réseau de signalisation qui décrit 
+les composants et les interactions entre les différents composants. C'est un large réseau qui compte près de $200$ composants 
+et à peu près $400$ interactions entre ces composants. 
+Parmis les composants nous avons les gènes, les protéines, les complexes et les indicateurs d'états cellulaires.
+Les interactions entre les composants sont de plusieurs natures. Nous avons principalement les activations entre composants, les inibitions,
+les décompositions de complexes. 
+
+
+\subsection{Les données de séries temporelles}
+
+Les données de séries temporelles sont les données obtenues après une expérience réelle en laboratoire. 
+
+\section{Le framework de modélisation: le formalisme des frappes de processus}
+
+Dans cette section nous allons définir et donner la sémentaique du formalisme des frappes de processus. Le formalisme des frappes des processus 
+regroupe un ensemble de processus(généralement concurrents) en un ensemble fini de sortes. Un processus est associé à une et une seule sorte et 
+est dénoté par $a_{i}$ où $a$ le nom de la sorte et $i$ est l'identificateur du processus dans la sorte a. A chaque instant un et un seul processus 
+de chaque sorte est présent. L'ensemble des processus actif à un moment donné représentent l'état du système.
+
+Les processus interagissent entre eux à travers les actions concurrentes regroupé dans un ensemble d'actions. Une action décrit le changement d'un 
+processus d'une sorte par un autre processus de la même sorte.	
+
+\subsection{Défintion formelle des frappes de processus}
+
+\subsection{Propriétés des frappes de processus}
+
+% construction des Frappes de processus par d'autres  frappes de processus(union, intersection, ...)
+
+\section{Les contraintes de la comparaison}
+
+% la nécessité de discretiser les données 
+
+% présentation de l'algorithme de discretisation 
+
+% présentation de la notion de trace et équivalence de trace.
+
+\section{Résultats}
+
+
+\subsection{Du RSTC network vers PH model}
+
+%introduction des patterns
+
+Pour traduire notre réseau de signalisation en frappe de processus, nous avons identifié un ensemble de patterns dans le réseau de signalisation auxquels nous avons 
+associé les patterns équivalents en frappe de processus. Le tableau suivant répertorie les principaux patterns, leurs équivalents en frappes de processus et une brève 
+description de leurs sémantique. 
+
+% construction des Frappes de processus par d'autres  frappes de processus(union, intersection, ...)
+
+\subsection{intégration des données de séries temporelles}
+
+%Estimation des paramètres temporelles (t1 t2 t3 t4 t5 ...)
+L'idée de l'estimation des paramètres temporelles est de déterminer les différents instant de temps pour les quels on considère un changement 
+d'état à partir des niveaux d'expressions. La détermination des changements d'état va donc s'appuyer sur un choix au préalable des seuils qui 
+vont déterminer les différents niveaux d'activités. Ainsi dès que le niveau d'expression va traverser un seuil, on va considérer qu'il y a un 
+changement d'état au niveau du composant. Ce qui doit donc se traduire par une action dans notre modèle qui va entrainer cette dynamique.
+
+Dans un premier temps, nous devons donc déterminer les différents instant $t_{i}$ correspondant à un changement d'état. Par la suite nous devons 
+donner les rates aux actions responsables de cette dynamique de façon à pouvoir les observer aux instants estimés.
+
+%intégration des paramètres temporelles sous forme de rate et d'absorption de stochasticité ( r et sa)
+
+Le rate d'une action peut être vu comme une approximation de l'inverse  du temps moyen nécessaire pour l'exécution de cette action. L'idée 
+c'est de faire en sorte que le temp moyen d'une action corresponde à l'interval de temp qui sépare cette action de la précédente.
+
+
+
+\subsection{Simulation et analyse des résultats}
+
+% présenter les différents cas de figure des simulations 
+Dans cette partie nous présentons les résultats des simulations réalisées. Nous allons présnter différents cas de figures qui correspondent 
+aux choix de simulatios qui nous ont permi de comprendre l'évolution de notre système et d'améliorer la qualité de nos simulations. Pour chacune de ces 
+simulations nous avons choisi les paramètres temporelles et stochastiques de la façon suivante:
+\begin{enumerate}
+ \item Nous avons choisi une absortion de stochasticité de $50$ pour toutes les actions: l'objectif de ce choix est de raffiner au mieux l'interval de tir.
+ \item Nous avons affecté les rates estimés aux actions qui influencent les gènes dont nous avons pu mesurer le niveau d'expression.
+ \item Nous avons affecté une valeur de $10$ comme rate pour les actions qui influencent les gènes dont nous n'avons pas d'information sur les niveaux d'expressions. 
+\end{enumerate}
+
+
+% premier cas: Le graphe brute 
+\subsubsection{Le graphe brute}
+Les résultats suivants correspondent aux simulations réealisées sur le graphe complet de notre système après insertion des paramètres temporelles estimés 
+et du facteur d'absortion de stochasticité. 
+
+
+%deuxième cas: décomposition en sous graphes qui ne contiennent pas de boucles et d'auto dégradation de composants
+\subsubsection{Décomposition en sous graphe}
+Afin de simplifier l'analyse et la comparaison des traces d'exécutions, nous avons proposé une analyse par sous-graphe du réseau représentant notre système 
+biologique. 
+
+%expliquer la construction des sous graphes
+
+
+
+
+% troisième cas: pas de feedback et nous introduisons une auto dégradation des facteurs de transcription
+
+%quatrième cas de figure: nous introduisons des feedbacks
+
+
+\subsubsection{Intégration des sous graphes}
+%intérêtes des sortes de synchronisations
+
+
+
+
+\section{Conclusions}
+% A faire après la réunion
+
+\subsection{Perspectives}
+
+\begin{enumerate}
+ \item Sortes de synchronisation???
+ \item Extension de la définition(horloges explicites, relachement des contraintes)
+\end{enumerate}
+
+
+\bibliographystyle{plain}
+\bibliography{biblio.bib}
+
+
+\appendix
+
+\clearpage
+\appendix
+
+
+\end{document}
